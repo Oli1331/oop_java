@@ -38,8 +38,14 @@ application {
 jacocoTestReport {
     reports {
         xml.required = true
+        // Перенаправляем XML-отчет в корневую папку build
+        xml.outputLocation = file("${project.rootDir}/build/reports/jacoco/test/jacocoTestReport.xml")
         html.required = true
     }
+}
+// Перенаправляем Javadoc 
+tasks.named('javadoc') {
+    destinationDir = file("${project.rootDir}/build/docs/javadoc")
 }
 
 test {
