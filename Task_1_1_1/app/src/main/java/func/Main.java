@@ -3,13 +3,13 @@ package func;
 import java.util.Scanner;
 
 /**
- * Class for test my_compile
+ * Class for test my_compile.
  */
 public class Main {
     /**
      * Base method
      * 
-     * @param args command line arguments
+     * @param args command line arguments.
      */
     public static void main(String[] args) {
 

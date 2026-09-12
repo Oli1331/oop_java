@@ -1,22 +1,18 @@
 package func;
 
 /**
- * 
- * HeapSort - class with method for sort array
+ * HeapSort - class with method for sort array.
  */
 public class HeapSort {
     /**
-     * Method for sort
-     * 
-     * @param arr data for sort
+     * Method for sort.
+     * @param arr data for sort.
      */
     public static int[] sort(int[] arr) {
 
-        /** строим max кучу */
         for (int i = arr.length / 2 - 1; i >= 0; i--) {
             heapify(arr, arr.length, i);
         }
-        /** достаем элементы */
         for (int i = arr.length - 1; i >= 0; i--) {
             swap(arr, 0, i);
             heapify(arr, i, 0);
@@ -24,7 +20,7 @@ public class HeapSort {
         return arr;
     }
 
-    /** Function for down element */
+    /** Function for down element. */
     public static void heapify(int[] arr, int len, int n) {
         int left = n * 2 + 1;
         int right = n * 2 + 2;
@@ -44,11 +40,10 @@ public class HeapSort {
     }
 
     /**
-     * Swap element with index i and j
-     * 
-     * @param arr data, where swap elements
-     * @param i   first index
-     * @param j   seccond index
+     * Swap element with index i and j.
+     * @param arr data, where swap elements.
+     * @param i   first index.
+     * @param j   seccond index.
      */
     public static void swap(int[] arr, int i, int j) {
         int temp = arr[i];
