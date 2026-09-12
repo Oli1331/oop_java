@@ -2,8 +2,15 @@ package func;
 
 import java.util.Scanner;
 
+/**
+ * Class for test my_compile
+ */
 public class Main {
-
+    /**
+     * Base method
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
