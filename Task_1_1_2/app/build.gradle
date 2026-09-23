@@ -8,11 +8,28 @@
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
     id 'application'
+    id 'jacoco'
 }
 
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    // Автоматически запускать генерацию отчета после выполнения тестов
+    finalizedBy jacocoTestReport 
+}
+
+jacocoTestReport {
+    // Отчет формируется только после завершения тестов
+    dependsOn test 
+    reports {
+        xml.required = false
+        csv.required = false
+        html.required = true // Включаем генерацию HTML-страницы
+    }
 }
 
 dependencies {
@@ -34,7 +51,7 @@ java {
 
 application {
     // Define the main class for the application.
-    mainClass = 'blackjack.Main'
+    mainClass = 'nsu.lab.blackjack.Main'
 }
 
 tasks.named('test') {
