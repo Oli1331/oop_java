@@ -1,4 +1,4 @@
-package nsu.lab.blackjack.cardsLogic;
+package nsu.lab.blackjack.cards;
 
 /**
  * Represents a single playing card with rank and suit.

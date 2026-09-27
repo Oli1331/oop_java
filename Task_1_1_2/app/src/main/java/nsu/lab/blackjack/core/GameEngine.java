@@ -1,7 +1,7 @@
-package nsu.lab.blackjack.gameCore;
+package nsu.lab.blackjack.core;
 
-import nsu.lab.blackjack.cardsLogic.Card;
-import nsu.lab.blackjack.cardsLogic.Pile;
+import nsu.lab.blackjack.cards.Card;
+import nsu.lab.blackjack.cards.Pile;
 import nsu.lab.blackjack.entity.Dealer;
 import nsu.lab.blackjack.entity.Player;
 
@@ -15,7 +15,7 @@ public class GameEngine {
     private Pile discardPile;
     private Player player;
     private Dealer dealer;
-    private ConsoleIO console = new ConsoleIO();
+    private ConsoleIo console = new ConsoleIo();
 
     /**
      * Initializes engine with deck count.

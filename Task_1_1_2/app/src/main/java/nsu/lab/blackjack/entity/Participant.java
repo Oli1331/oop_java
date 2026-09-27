@@ -1,8 +1,9 @@
 package nsu.lab.blackjack.entity;
 
 import java.util.ArrayList;
-import nsu.lab.blackjack.cardsLogic.Card;
-import nsu.lab.blackjack.cardsLogic.Pile;
+
+import nsu.lab.blackjack.cards.Card;
+import nsu.lab.blackjack.cards.Pile;
 
 /**
  * Abstract participant base class holding hand cards.

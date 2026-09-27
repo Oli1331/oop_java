@@ -1,18 +1,19 @@
-package nsu.lab.blackjack.gameCore;
+package nsu.lab.blackjack.core;
 
 import java.util.Scanner;
-import nsu.lab.blackjack.cardsLogic.Card;
+
+import nsu.lab.blackjack.cards.Card;
 
 /**
  * Handles terminal I/O and user prompts.
  */
-public class ConsoleIO {
+public class ConsoleIo {
     private Scanner scan;
 
     /**
      * Initializes console scanner.
      */
-    public ConsoleIO() {
+    public ConsoleIo() {
         scan = new Scanner(System.in);
     }
 

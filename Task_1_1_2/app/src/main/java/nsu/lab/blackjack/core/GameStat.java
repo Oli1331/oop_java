@@ -1,4 +1,4 @@
-package nsu.lab.blackjack.gameCore;
+package nsu.lab.blackjack.core;
 
 /**
  * Tracks score statistics and round counters.

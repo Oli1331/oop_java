@@ -1,16 +1,22 @@
-package nsu.lab.blackjack.gameCore;
+package nsu.lab.blackjack.core;
 
 import org.junit.jupiter.api.Test;
 
-import nsu.lab.blackjack.cardsLogic.Card;
-import nsu.lab.blackjack.cardsLogic.RankCard;
-import nsu.lab.blackjack.cardsLogic.SuitCard;
+import nsu.lab.blackjack.cards.Card;
+import nsu.lab.blackjack.cards.RankCard;
+import nsu.lab.blackjack.cards.SuitCard;
 
-public class ConsoleIOTEST {
-    ConsoleIO console = new ConsoleIO();
+/**
+ * Tests for console output messages.
+ */
+public class ConsoleIoTest {
+    ConsoleIo console = new ConsoleIo();
 
+    /**
+     * Executes coverage tests for messages.
+     */
     @Test
-    void CrutchTestForScore() {
+    void crutchTestForScore() {
         console.messageAboutExit();
         console.messageBlackjack();
         console.messageDealCard();

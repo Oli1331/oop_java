@@ -1,14 +1,20 @@
-package nsu.lab.blackjack.gameCore;
+package nsu.lab.blackjack.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for game statistics.
+ */
 public class GameStatTest {
     GameStat stat = new GameStat();
 
+    /**
+     * Tests incrementing point values.
+     */
     @Test
-    void IncrimentTest() {
+    void incrimentTest() {
         assertEquals(0, stat.getDealerPoints());
         assertEquals(0, stat.getNumRound());
         assertEquals(0, stat.getPlayerPoints());

@@ -1,6 +1,6 @@
 package nsu.lab.blackjack.entity;
 
-import nsu.lab.blackjack.cardsLogic.Card;
+import nsu.lab.blackjack.cards.Card;
 
 /**
  * Represents dealer with hidden hole-card mechanics.

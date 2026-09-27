@@ -1,11 +1,17 @@
-package nsu.lab.blackjack.cardsLogic;
+package nsu.lab.blackjack.cards;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for card pile logic.
+ */
 public class PileTest {
+    /**
+     * Verifies card retrieval process.
+     */
     @Test
     void testGetCard() {
         Pile p1 = new Pile(0);
