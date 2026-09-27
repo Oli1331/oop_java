@@ -5,18 +5,23 @@ import nsu.lab.blackjack.cardsLogic.Pile;
 import nsu.lab.blackjack.entity.Dealer;
 import nsu.lab.blackjack.entity.Player;
 
+/**
+ * Main game engine orchestrating rounds and turns.
+ */
 public class GameEngine {
 
     private GameStat stat;
-
     private Pile gamePile;
     private Pile discardPile;
-
     private Player player;
     private Dealer dealer;
-
     private ConsoleIO console = new ConsoleIO();
 
+    /**
+     * Initializes engine with deck count.
+     *
+     * @param countDeck amount of decks.
+     */
     public GameEngine(int countDeck) {
         player = new Player();
         dealer = new Dealer();
@@ -26,6 +31,9 @@ public class GameEngine {
         stat = new GameStat();
     }
 
+    /**
+     * Deals starting cards to player and dealer.
+     */
     public void dealCard() {
         player.takeCard(getCard());
         player.takeCard(getCard());
@@ -36,26 +44,38 @@ public class GameEngine {
         dealer.printCard();
     }
 
+    /**
+     * Draws card from pile reshuffling discard pile if needed.
+     *
+     * @return drawn card.
+     */
     public Card getCard() {
         if (gamePile.empty()) {
             mixCard();
         }
         return gamePile.getCard();
-
     }
 
+    /**
+     * Moves all cards from discard pile back to game pile.
+     */
     public void mixCard() {
         while (discardPile.getCountCard() > 0) {
             gamePile.addCard(discardPile.getCard());
         }
     }
 
+    /**
+     * Executes interactive player turn loop.
+     */
     public void playerTurn() {
         if (player.haveBlackjack()) {
             console.messageBlackjack();
             return;
         }
         console.messagePlayerTurn();
+        player.printCard();
+        dealer.printCard();
         while (player.getSumCard() < 21 && console.userAgree()) {
             Card c = getCard();
             player.takeCard(c);
@@ -64,6 +84,9 @@ public class GameEngine {
         }
     }
 
+    /**
+     * Executes automated dealer turn logic.
+     */
     public void dealerTurn() {
         console.messageDealerTurn();
         dealer.openSecretCard();
@@ -71,16 +94,19 @@ public class GameEngine {
         if (player.haveBlackjack() || dealer.haveBlackjack() || player.getSumCard() > 21) {
             return;
         }
-
-        console.messageDealerTurn();
         while (dealer.getSumCard() < 17) {
             Card c = getCard();
             dealer.takeCard(c);
             console.messageOpenCard(c);
-            dealer.printCard();
+            dealer.printCard(); 
         }
     }
 
+    /**
+     * Prepares and resets hands for a new round.
+     *
+     * @return true to continue, false to exit.
+     */
     public boolean startRound() {
         player.reset(discardPile);
         dealer.reset(discardPile);
@@ -91,6 +117,9 @@ public class GameEngine {
         return !console.userAgree();
     }
 
+    /**
+     * Compares hands and calculates scores.
+     */
     public void checkResults() {
         if (player.haveBlackjack()) {
             console.messagePlayerWin();
@@ -109,19 +138,21 @@ public class GameEngine {
         } else if (dealer.getSumCard() > player.getSumCard()) {
             console.messageDealerMorePlayer();
             stat.incDealerPoints();
-        }
-        else if(player.getSumCard()>dealer.getSumCard()){
+        } else if (player.getSumCard() > dealer.getSumCard()) {
             console.messagePlayerMoreDealer();
             stat.incPlayerPoints();
-        }
-        else{
+        } else {
             console.messageTie();
         }
         stat.incNumRound();
     }
 
+    /**
+     * Returns the current round counter.
+     *
+     * @return current round number.
+     */
     public int getNumRound() {
         return stat.getNumRound();
     }
-
 }
