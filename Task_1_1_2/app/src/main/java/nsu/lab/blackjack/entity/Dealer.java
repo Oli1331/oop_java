@@ -1,5 +1,4 @@
 package nsu.lab.blackjack.entity;
-
 import nsu.lab.blackjack.cards.Card;
 
 /**

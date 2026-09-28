@@ -1,5 +1,4 @@
 package nsu.lab.blackjack.core;
-
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 import nsu.lab.blackjack.entity.Dealer;

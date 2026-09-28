@@ -1,7 +1,5 @@
 package nsu.lab.blackjack.entity;
-
 import java.util.ArrayList;
-
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 

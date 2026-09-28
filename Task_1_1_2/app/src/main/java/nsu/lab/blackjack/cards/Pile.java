@@ -1,5 +1,4 @@
 package nsu.lab.blackjack.cards;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**

@@ -2,13 +2,11 @@ package nsu.lab.blackjack.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
-import org.junit.jupiter.api.Test;
-
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 import nsu.lab.blackjack.cards.RankCard;
 import nsu.lab.blackjack.cards.SuitCard;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests player and dealer entities.
@@ -46,7 +44,7 @@ public class PlayertTest {
         player.takeCard(aceCard);
         player.takeCard(aceCard);
         assertEquals(13, player.getSumCard());
-        player.printCard();// crutch
+        player.printCard(); // crutch
 
     }
 

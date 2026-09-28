@@ -1,10 +1,8 @@
 package nsu.lab.blackjack.core;
-
-import org.junit.jupiter.api.Test;
-
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.RankCard;
 import nsu.lab.blackjack.cards.SuitCard;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests for console output messages.

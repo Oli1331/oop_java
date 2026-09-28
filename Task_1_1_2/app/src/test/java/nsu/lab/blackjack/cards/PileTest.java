@@ -1,8 +1,6 @@
 package nsu.lab.blackjack.cards;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
 import org.junit.jupiter.api.Test;
 
 /**
@@ -21,6 +19,5 @@ public class PileTest {
         Pile p2 = new Pile(1);
         p2.fill(1);
         assertNotEquals(null, p2.getCard());
-
     }
 }

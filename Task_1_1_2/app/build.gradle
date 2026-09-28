@@ -23,12 +23,11 @@ test {
 }
 
 jacocoTestReport {
-    // Отчет формируется только после завершения тестов
     dependsOn test 
     reports {
-        xml.required = false
+        xml.required = true
         csv.required = false
-        html.required = true // Включаем генерацию HTML-страницы
+        html.required = true 
     }
 }
 

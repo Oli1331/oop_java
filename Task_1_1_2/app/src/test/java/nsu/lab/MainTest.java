@@ -1,8 +1,6 @@
 package nsu.lab;
-
-import org.junit.jupiter.api.Test;
-
 import nsu.lab.blackjack.Main;
+import org.junit.jupiter.api.Test;
 
 /**
  * Tests application main entry.

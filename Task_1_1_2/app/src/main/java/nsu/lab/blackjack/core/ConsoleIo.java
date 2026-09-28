@@ -1,7 +1,6 @@
 package nsu.lab.blackjack.core;
 
 import java.util.Scanner;
-
 import nsu.lab.blackjack.cards.Card;
 
 /**
@@ -68,7 +67,8 @@ public class ConsoleIo {
      * Prints dealer turn banner.
      */
     public void messageDealerTurn() {
-        System.out.println("\n\n************\n*ХОД ДИЛЕРА*\n************\n Дилер открывает закрытую карту ");
+        System.out.println("\n\n************\n*ХОД ДИЛЕРА*\n************\n"
+                + "Дилер открывает закрытую карту ");
     }
 
     /**

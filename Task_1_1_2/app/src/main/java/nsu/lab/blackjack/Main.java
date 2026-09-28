@@ -1,5 +1,4 @@
 package nsu.lab.blackjack;
-
 import nsu.lab.blackjack.core.GameEngine;
 
 /**
