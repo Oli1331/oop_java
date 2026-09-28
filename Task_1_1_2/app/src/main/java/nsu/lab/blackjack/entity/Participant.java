@@ -1,13 +1,13 @@
 package nsu.lab.blackjack.entity;
-import java.util.ArrayList;
+
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 
-/**
- * Abstract participant base class holding hand cards.
- */
+import java.util.ArrayList;
+
+/** Abstract participant base class holding hand cards. */
 public abstract class Participant {
-    private ArrayList<Card> card = new ArrayList<>();
+    private final ArrayList<Card> card = new ArrayList<>();
 
     /**
      * Calculates the best possible sum of hand points.
@@ -65,15 +65,10 @@ public abstract class Participant {
      * @return true if 2 cards total 21.
      */
     public boolean haveBlackjack() {
-        if (card.size() == 2 && getSumCard() == 21) {
-            return true;
-        }
-        return false;
+        return card.size() == 2 && getSumCard() == 21;
     }
 
-    /**
-     * Prints held cards to console.
-     */
+    /** Prints held cards to console. */
     public abstract void printCard();
 
     /**

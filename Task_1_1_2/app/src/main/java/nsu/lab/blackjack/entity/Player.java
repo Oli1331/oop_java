@@ -1,13 +1,9 @@
 package nsu.lab.blackjack.entity;
 
-/**
- * Represents human player participant.
- */
+/** Represents human player participant. */
 public class Player extends Participant {
 
-    /**
-     * Outputs player's cards and score to stdout.
-     */
+    /** Outputs player's cards and score to stdout. */
     @Override
     public void printCard() {
         System.out.print("Ваши карты: {");

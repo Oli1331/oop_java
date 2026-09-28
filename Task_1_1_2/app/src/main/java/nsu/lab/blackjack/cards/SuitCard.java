@@ -1,15 +1,13 @@
 package nsu.lab.blackjack.cards;
 
-/**
- * Enumeration representing playing card suits.
- */
+/** Enumeration representing playing card suits. */
 public enum SuitCard {
     HEARTS("♥"),
     DIAMONDS("♦"),
     CLUBS("♣"),
     SPADES("♠");
 
-    private String symbol;
+    private final String symbol;
 
     /**
      * Constructs a suit enum constant.

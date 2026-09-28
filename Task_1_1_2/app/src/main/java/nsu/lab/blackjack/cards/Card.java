@@ -1,17 +1,12 @@
 package nsu.lab.blackjack.cards;
 
-/**
- * Represents a single playing card with rank and suit.
- */
+/** Represents a single playing card with rank and suit. */
 public class Card {
 
-    private RankCard rank;
-    private SuitCard suit;
-
-    /**
-     * Standard 52-card deck size constant.
-     */
+    /** Standard 52-card deck size constant. */
     public static int countCard = 52;
+    private final RankCard rank;
+    private final SuitCard suit;
 
     /**
      * Constructs a playing card with specified rank and suit.

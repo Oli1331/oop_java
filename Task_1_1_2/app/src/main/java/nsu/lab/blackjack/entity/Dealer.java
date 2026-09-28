@@ -1,9 +1,8 @@
 package nsu.lab.blackjack.entity;
+
 import nsu.lab.blackjack.cards.Card;
 
-/**
- * Represents dealer with hidden hole-card mechanics.
- */
+/** Represents dealer with hidden hole-card mechanics. */
 public class Dealer extends Participant {
     private boolean haveSecret = false;
 
@@ -17,9 +16,7 @@ public class Dealer extends Participant {
         haveSecret = true;
     }
 
-    /**
-     * Reveals dealer hole card.
-     */
+    /** Reveals dealer hole card. */
     public void openSecretCard() {
         haveSecret = false;
     }
@@ -37,9 +34,7 @@ public class Dealer extends Participant {
         return super.getSumCard();
     }
 
-    /**
-     * Displays dealer cards concealing secret card if needed.
-     */
+    /** Displays dealer cards concealing secret card if needed. */
     @Override
     public void printCard() {
         System.out.print("Карты дилера: {");

@@ -1,30 +1,22 @@
 package nsu.lab.blackjack.core;
 
-/**
- * Tracks score statistics and round counters.
- */
+/** Tracks score statistics and round counters. */
 public class GameStat {
     private int playerPoints = 0;
     private int dealerPoints = 0;
     private int numRound = 0;
 
-    /**
-     * Increments player win count.
-     */
+    /** Increments player win count. */
     protected void incPlayerPoints() {
         playerPoints++;
     }
 
-    /**
-     * Increments dealer win count.
-     */
+    /** Increments dealer win count. */
     protected void incDealerPoints() {
         dealerPoints++;
     }
 
-    /**
-     * Increments current round number.
-     */
+    /** Increments current round number. */
     protected void incNumRound() {
         numRound++;
     }

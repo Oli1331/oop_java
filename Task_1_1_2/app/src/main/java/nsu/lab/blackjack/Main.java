@@ -1,9 +1,8 @@
 package nsu.lab.blackjack;
+
 import nsu.lab.blackjack.core.GameEngine;
 
-/**
- * Main application entry point for the Blackjack game.
- */
+/** Main application entry point for the Blackjack game. */
 public class Main {
     /**
      * Runs the blackjack simulation and game loop.

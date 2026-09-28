@@ -1,26 +1,23 @@
 package nsu.lab.blackjack.entity;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 import nsu.lab.blackjack.cards.RankCard;
 import nsu.lab.blackjack.cards.SuitCard;
+
 import org.junit.jupiter.api.Test;
 
-/**
- * Tests player and dealer entities.
- */
+import static org.junit.jupiter.api.Assertions.*;
+
+/** Tests player and dealer entities. */
 public class PlayertTest {
     /** Player instance. */
     Player player = new Player();
+
     /** Dealer instance. */
     Dealer dealer = new Dealer();
 
-    /**
-     * Verifies player card operations.
-     */
+    /** Verifies player card operations. */
     @Test
     void testUsingCard() {
         assertThrows(IndexOutOfBoundsException.class, () -> player.getCard(0));
@@ -32,9 +29,9 @@ public class PlayertTest {
         assertEquals(aceCard, player.getCard(0));
 
         Card jackCard = new Card(RankCard.JACK, SuitCard.HEARTS);
-        assertEquals(false, player.haveBlackjack());
+        assertFalse(player.haveBlackjack());
         player.takeCard(jackCard);
-        assertEquals(true, player.haveBlackjack());
+        assertTrue(player.haveBlackjack());
 
         Pile discardPile = new Pile(1);
         player.reset(discardPile);
@@ -46,12 +43,9 @@ public class PlayertTest {
         player.takeCard(aceCard);
         assertEquals(13, player.getSumCard());
         player.printCard(); // crutch
-
     }
 
-    /**
-     * Verifies dealer logic rules.
-     */
+    /** Verifies dealer logic rules. */
     @Test
     void testDealerLogic() {
         Card aceCard = new Card(RankCard.ACE, SuitCard.HEARTS);

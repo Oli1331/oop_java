@@ -1,31 +1,24 @@
 package nsu.lab.blackjack.core;
 
-import java.util.Scanner;
 import nsu.lab.blackjack.cards.Card;
 
-/**
- * Handles terminal I/O and user prompts.
- */
-public class ConsoleIo {
-    private Scanner scan;
+import java.util.Scanner;
 
-    /**
-     * Initializes console scanner.
-     */
+/** Handles terminal I/O and user prompts. */
+public class ConsoleIo {
+    private final Scanner scan;
+
+    /** Initializes console scanner. */
     public ConsoleIo() {
         scan = new Scanner(System.in);
     }
 
-    /**
-     * Prints welcome message and deck prompt.
-     */
+    /** Prints welcome message and deck prompt. */
     public void messageGameStart() {
         System.out.print("Добро пожаловать в Блэкджек! \n Сколько колод будут в игре? ");
     }
 
-    /**
-     * Prompts user about game exit.
-     */
+    /** Prompts user about game exit. */
     public void messageAboutExit() {
         System.out.print("Выйти из игры? ");
     }
@@ -49,31 +42,24 @@ public class ConsoleIo {
         System.out.println("Раунд №" + numRound);
     }
 
-    /**
-     * Announces blackjack.
-     */
+    /** Announces blackjack. */
     public void messageBlackjack() {
         System.out.println("Блэкджек!");
     }
 
-    /**
-     * Prints player turn banner.
-     */
+    /** Prints player turn banner. */
     public void messagePlayerTurn() {
         System.out.println("\n\n*********\n*ВАШ ХОД*\n*********\nВзять карту?\n");
     }
 
-    /**
-     * Prints dealer turn banner.
-     */
+    /** Prints dealer turn banner. */
     public void messageDealerTurn() {
-        System.out.println("\n\n************\n*ХОД ДИЛЕРА*\n************\n"
-                + "Дилер открывает закрытую карту ");
+        System.out.println(
+                "\n\n************\n*ХОД ДИЛЕРА*\n************\n"
+                        + "Дилер открывает закрытую карту ");
     }
 
-    /**
-     * Announces cards deal.
-     */
+    /** Announces cards deal. */
     public void messageDealCard() {
         System.out.println("Дилер раздал карты");
     }
@@ -87,51 +73,37 @@ public class ConsoleIo {
         System.out.println("Открыта карта " + c);
     }
 
-    /**
-     * Announces player victory.
-     */
+    /** Announces player victory. */
     public void messagePlayerWin() {
         System.out.println("Вы победили!");
     }
 
-    /**
-     * Announces player defeat.
-     */
+    /** Announces player defeat. */
     public void messagePlayerLose() {
         System.out.println("Вы проиграли.");
     }
 
-    /**
-     * Announces player bust.
-     */
+    /** Announces player bust. */
     public void messagePlayerMore21() {
         System.out.println("У вас сумма карт больше 21.");
     }
 
-    /**
-     * Announces dealer bust.
-     */
+    /** Announces dealer bust. */
     public void messageDealerMore21() {
         System.out.println("У дилера сумма карт больше 21.");
     }
 
-    /**
-     * Announces dealer higher score.
-     */
+    /** Announces dealer higher score. */
     public void messageDealerMorePlayer() {
         System.out.println("У дилера сумма карт больше.");
     }
 
-    /**
-     * Announces player higher score.
-     */
+    /** Announces player higher score. */
     public void messagePlayerMoreDealer() {
         System.out.println("У вас сумма карт больше.");
     }
 
-    /**
-     * Announces tie game.
-     */
+    /** Announces tie game. */
     public void messageTie() {
         System.out.println("Ничья");
     }

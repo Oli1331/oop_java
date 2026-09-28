@@ -1,13 +1,12 @@
 package nsu.lab.blackjack.cards;
+
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Represents a card deck or discard pile.
- */
+/** Represents a card deck or discard pile. */
 public class Pile {
-    private Card[] card;
+    private final Card[] card;
     private int countCard;
-    private int size;
+    private final int size;
 
     /**
      * Allocates pile memory for the given deck amount.
@@ -36,9 +35,7 @@ public class Pile {
         shuffle();
     }
 
-    /**
-     * Shuffles remaining cards in the pile.
-     */
+    /** Shuffles remaining cards in the pile. */
     public void shuffle() {
         for (int i = 0; i < countCard; i++) {
             int randomNum = ThreadLocalRandom.current().nextInt(0, size);
