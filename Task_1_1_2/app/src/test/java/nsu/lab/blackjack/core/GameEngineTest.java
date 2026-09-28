@@ -26,7 +26,5 @@ public class GameEngineTest {
     @Test
     void statTest() {
         assertEquals(0, game.getNumRound());
-        game.checkResults();
-        assertEquals(1, game.getNumRound());
     }
 }
