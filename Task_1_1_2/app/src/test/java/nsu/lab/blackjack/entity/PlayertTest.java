@@ -2,6 +2,7 @@ package nsu.lab.blackjack.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import nsu.lab.blackjack.cards.Card;
 import nsu.lab.blackjack.cards.Pile;
 import nsu.lab.blackjack.cards.RankCard;
