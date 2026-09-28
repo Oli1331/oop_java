@@ -22,8 +22,14 @@ test {
     finalizedBy jacocoTestReport 
 }
 
+javadoc {
+    destinationDir = file("${projectDir}/../build/docs/javadoc")
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+}
+
 jacocoTestReport {
-    dependsOn test 
+    dependsOn test
     reports {
         xml.required = true
         html.required = true
@@ -59,4 +65,7 @@ tasks.named('test') {
 }
 run {
     standardInput = System.in
+}
+build {
+    dependsOn javadoc
 }
