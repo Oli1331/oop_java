@@ -11,7 +11,17 @@ import nsu.lab.expression.entity.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
+/** Recursive descent parser that builds an expression tree from a string. */
 public class Parser {
+
+    private Parser() {}
+
+    /**
+     * Parses the given string into an expression.
+     *
+     * @param str the expression text
+     * @return the parsed expression
+     */
     public static Expression pars(String str) {
         List<Token> tokens = new ArrayList<>();
         getToken(tokens, str);
@@ -46,10 +56,9 @@ public class Parser {
                 case DIV -> {
                     return new Div(left, right);
                 }
-                default -> {
-                    throw new IllegalArgumentException(
-                            "The operator was expected, but was met: " + operator);
-                }
+                default ->
+                        throw new IllegalArgumentException(
+                                "The operator was expected, but was met: " + operator);
             }
         }
         if (tokens.get(numToken.getNum()).type() == TokenType.VARIABLE) {
@@ -66,9 +75,7 @@ public class Parser {
         while (possition < str.length()) {
             char symbol = str.charAt(possition);
             switch (symbol) {
-                case ' ' -> {
-                    possition++;
-                }
+                case ' ' -> possition++;
                 case '(' -> {
                     tokens.add(new Token(TokenType.LBRACKET, "("));
                     possition++;

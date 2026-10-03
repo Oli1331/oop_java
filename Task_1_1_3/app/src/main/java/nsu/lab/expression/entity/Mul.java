@@ -2,10 +2,21 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node for multiplication. */
 public class Mul extends Expression {
+
+    /** Left operand. */
     protected Expression a;
+
+    /** Right operand. */
     protected Expression b;
 
+    /**
+     * Creates a multiplication node.
+     *
+     * @param a left operand
+     * @param b right operand
+     */
     public Mul(Expression a, Expression b) {
         this.a = a;
         this.b = b;

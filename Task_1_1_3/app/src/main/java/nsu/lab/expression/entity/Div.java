@@ -2,11 +2,21 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node for division. */
 public class Div extends Expression {
 
+    /** Left operand. */
     protected Expression a;
+
+    /** Right operand. */
     protected Expression b;
 
+    /**
+     * Creates a division node.
+     *
+     * @param a left operand
+     * @param b right operand
+     */
     public Div(Expression a, Expression b) {
         this.a = a;
         this.b = b;

@@ -2,9 +2,15 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node holding a variable name. */
 public class Variable extends Expression {
     String name;
 
+    /**
+     * Creates a variable.
+     *
+     * @param name the variable name
+     */
     public Variable(String name) {
         this.name = name;
     }

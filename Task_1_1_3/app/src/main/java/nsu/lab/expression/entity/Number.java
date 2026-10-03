@@ -2,9 +2,15 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node holding a constant value. */
 public class Number extends Expression {
     private final Integer value;
 
+    /**
+     * Creates a constant.
+     *
+     * @param value the constant value
+     */
     public Number(int value) {
         this.value = value;
     }

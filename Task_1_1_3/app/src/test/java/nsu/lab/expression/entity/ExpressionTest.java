@@ -7,8 +7,10 @@ import nsu.lab.expression.parsing.Parser;
 
 import org.junit.jupiter.api.Test;
 
+/** Tests parsing, evaluation and differentiation of expressions. */
 public class ExpressionTest {
 
+    /** Checks parsing, evaluation and differentiation. */
     @Test
     void evalTest() { // - /
         Expression e1 = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));

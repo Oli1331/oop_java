@@ -2,11 +2,21 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node for subtraction. */
 public class Sub extends Expression {
 
+    /** Left operand. */
     protected Expression a;
+
+    /** Right operand. */
     protected Expression b;
 
+    /**
+     * Creates a subtraction node.
+     *
+     * @param a left operand
+     * @param b right operand
+     */
     public Sub(Expression a, Expression b) {
         this.a = a;
         this.b = b;

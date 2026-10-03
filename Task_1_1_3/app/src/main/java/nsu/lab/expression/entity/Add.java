@@ -2,11 +2,21 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
+/** Expression node for addition. */
 public class Add extends Expression {
 
+    /** Left operand. */
     protected Expression a;
+
+    /** Right operand. */
     protected Expression b;
 
+    /**
+     * Creates an addition node.
+     *
+     * @param a left operand
+     * @param b right operand
+     */
     public Add(Expression a, Expression b) {
         this.a = a;
         this.b = b;
