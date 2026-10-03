@@ -1,0 +1,64 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+    id 'jacoco'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+test {
+    useJUnitPlatform()
+    // Автоматически запускать генерацию отчета после выполнения тестов
+    finalizedBy jacocoTestReport
+}
+
+javadoc {
+    destinationDir = file("${projectDir}/../build/docs/javadoc")
+    options.encoding = 'UTF-8'
+    options.charSet = 'UTF-8'
+}
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required = true
+        html.required = true
+        xml.outputLocation = file("${projectDir}/../build/reports/jacoco/test/jacocoTestReport.xml")
+    }
+}
+
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testImplementation libs.junit.jupiter
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // This dependency is used by the application.
+    implementation libs.guava
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'nsu.lab.expression.Main'
+}
+
+tasks.named('test') {
+    // Use JUnit Platform for unit tests.
+    useJUnitPlatform()
+}
+run {
+    standardInput = System.in
+}
+build {
+    dependsOn javadoc
+}
