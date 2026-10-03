@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class Main {
 
     /**
-     * Work with expression in console
+     * Work with expression in console.
      *
      * @param args path to file
      */
