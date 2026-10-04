@@ -43,7 +43,9 @@ public class Div extends Expression {
     public boolean equals(Object obj) {
         if (this == obj) return true;
 
-        if (obj == null || obj.getClass() != getClass()) return false;
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
 
         Div element = (Div) obj;
         return element.a.equals(a) && element.b.equals(b);

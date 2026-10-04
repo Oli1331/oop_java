@@ -1,5 +1,6 @@
 package nsu.lab.expression;
 
+
 import nsu.lab.expression.entity.Expression;
 import nsu.lab.expression.parsing.Parser;
 
@@ -40,9 +41,11 @@ public class Main {
 
             while (true) {
                 System.out.println(
-                        "\n\nWrite the expression on the first line, then the variables on the second line.");
+                        "\nWrite the expression on the first line, then the vars on the second line.");
                 input = scan.nextLine();
-                if (":q".equals(input)) break;
+                if (":q".equals(input)) {
+                    break;
+                }
                 var = scan.nextLine();
 
                 try {
