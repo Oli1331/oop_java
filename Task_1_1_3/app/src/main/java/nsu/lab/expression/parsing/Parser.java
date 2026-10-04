@@ -2,8 +2,13 @@ package nsu.lab.expression.parsing;
 
 import java.util.ArrayList;
 import java.util.List;
-import nsu.lab.expression.entity.*;
+import nsu.lab.expression.entity.Add;
+import nsu.lab.expression.entity.Div;
+import nsu.lab.expression.entity.Expression;
+import nsu.lab.expression.entity.Mul;
 import nsu.lab.expression.entity.Number;
+import nsu.lab.expression.entity.Sub;
+import nsu.lab.expression.entity.Variable;
 
 /**
  * Recursive descent parser that builds an expression tree from left string.
@@ -100,13 +105,15 @@ public class Parser {
                 default -> {
                     if (Character.isDigit(symbol)) {
                         int from = possition;
-                        while (possition < str.length() && Character.isDigit(str.charAt(possition))) {
+                        while (possition < str.length() &&
+                                Character.isDigit(str.charAt(possition))) {
                             possition++;
                         }
                         tokens.add(new Token(TokenType.NUMBER, str.substring(from, possition)));
                     } else if (Character.isLetter(symbol)) {
                         int from = possition;
-                        while (possition < str.length() && Character.isLetter(str.charAt(possition))) {
+                        while (possition < str.length() &&
+                                Character.isLetter(str.charAt(possition))) {
                             possition++;
                         }
                         tokens.add(new Token(TokenType.VARIABLE, str.substring(from, possition)));

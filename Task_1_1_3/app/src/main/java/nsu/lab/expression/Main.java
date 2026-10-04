@@ -41,7 +41,7 @@ public class Main {
 
             while (true) {
                 System.out.println(
-                        "\nWrite the expression on the first line, then the vars on the second line.");
+                        "\nWrite expression on the first line, then the vars on the second line.");
                 input = scan.nextLine();
                 if (":q".equals(input)) {
                     break;

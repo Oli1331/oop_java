@@ -16,28 +16,26 @@ public class ExpressionTest {
      */
     @Test
     void evalTest() {
-        Expression e1 = new Add(new Number(3), new Mul(new Number(2), new Variable("x")));
+        Expression e1 = new Add(new Number(3),
+                new Mul(new Number(2), new Variable("x")));
         assertEquals(7, e1.eval("x=2"));
         Expression e2 = Parser.pars("(2+2)");
         assertEquals(new Add(new Number(2), new Number(2)), e2);
         Expression e3 = Parser.pars("((x * x)*x)");
-        Expression check3 = new Mul(new Mul(new Variable("x"), new Variable("x")), new Variable("x"));
+        Expression check3 = new Mul(new Mul(new Variable("x"), new Variable("x")),
+                new Variable("x"));
         assertEquals(check3, e3);
         assertEquals(3 * 3 * 3, e3.eval("x=3"));
         assertEquals(2 * 2 * 2, e3.eval("y=1; x=2; dfsf=4"));
         Expression e4 = Parser.pars("(1/x)");
         Expression de4x = e4.derivative("x");
         Expression de4y = e4.derivative("y");
-        Expression check4x =
-                new Div(
-                        new Sub(
-                                new Mul(new Number(0), new Variable("x")), new Mul(new Number(1), new Number(1))),
-                        new Mul(new Variable("x"), new Variable("x")));
-        Expression check4y =
-                new Div(
-                        new Sub(
-                                new Mul(new Number(0), new Variable("x")), new Mul(new Number(1), new Number(0))),
-                        new Mul(new Variable("x"), new Variable("x")));
+        Expression check4x = new Div(new Sub(new Mul(new Number(0), new Variable("x")),
+                new Mul(new Number(1), new Number(1))), new Mul(new Variable("x"),
+                new Variable("x")));
+        Expression check4y = new Div(new Sub(new Mul(new Number(0), new Variable("x")),
+                new Mul(new Number(1), new Number(0))), new Mul(new Variable("x"),
+                new Variable("x")));
 
         assertEquals(check4x, de4x);
         assertEquals(check4y, de4y);
@@ -48,9 +46,8 @@ public class ExpressionTest {
         assertEquals(check5, e5.derivative("x"));
 
         Expression e6 = Parser.pars("(x*y)");
-        Expression check6 =
-                new Add(
-                        new Mul(new Number(1), new Variable("y")), new Mul(new Variable("x"), new Number(0)));
+        Expression check6 = new Add(new Mul(new Number(1), new Variable("y")),
+                new Mul(new Variable("x"), new Number(0)));
         assertEquals(check6, e6.derivative("x"));
 
         assertThrows(IllegalArgumentException.class, () -> Parser.pars("(2--2)"));
