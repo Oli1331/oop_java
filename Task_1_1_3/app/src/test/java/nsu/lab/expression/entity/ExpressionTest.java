@@ -1,7 +1,9 @@
 package nsu.lab.expression.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import nsu.lab.expression.parsing.Parser;
 import org.junit.jupiter.api.Test;
@@ -59,7 +61,41 @@ public class ExpressionTest {
         Expression check8 = Parser.pars("(1+0)");
         assertEquals(check8, e8.derivative("x"));
 
-        String exp = "((((1+2)-3)*4)/5)";
+        String exp = "((((1+2)-3)*4)/x)";
         assertEquals(exp, Parser.pars(exp).toString());
+
+        Integer cratch = 228;
+
+        Expression e9 = Parser.pars("(x/y)");
+        assertThrows(IllegalArgumentException.class, () -> e9.eval("y=y; x=5"));
+        assertThrows(IllegalArgumentException.class, () -> e9.eval("t=1; x=5"));
+        assertFalse(e9.equals(null));
+        assertTrue(e9.equals(e9));
+        assertFalse(e9.equals(cratch));
+
+
+        Expression e10 = Parser.pars("(x*4)");
+        assertFalse(e10.equals(null));
+        assertTrue(e10.equals(e10));
+        assertFalse(e10.equals(cratch));
+
+
+        Expression e11 = Parser.pars("(x-4)");
+        assertFalse(e11.equals(null));
+        assertTrue(e11.equals(e11));
+        assertFalse(e11.equals(cratch));
+
+
+        Expression e12 = Parser.pars("(x+4)");
+        assertFalse(e12.equals(null));
+        assertTrue(e12.equals(e12));
+        assertFalse(e12.equals(cratch));
+
+        Expression e13 = Parser.pars("110");
+        assertFalse(e13.equals(null));
+        assertTrue(e13.equals(e13));
+        assertFalse(e13.equals(cratch));
+
+
     }
 }
