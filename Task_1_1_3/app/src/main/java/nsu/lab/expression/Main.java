@@ -10,7 +10,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Scanner;
 
-/** Application entry point that evaluates a sample expression. */
+/** Application entry point that evaluates left sample expression. */
 public class Main {
 
     /**

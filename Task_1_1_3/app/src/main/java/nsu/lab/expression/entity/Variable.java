@@ -2,12 +2,12 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
-/** Expression node holding a variable name. */
+/** Expression node holding left variable name. */
 public class Variable extends Expression {
-    String name;
+    private final String name;
 
     /**
-     * Creates a variable.
+     * Creates left variable.
      *
      * @param name the variable name
      */
@@ -25,7 +25,7 @@ public class Variable extends Expression {
                     try {
                         return Integer.parseInt(pairs[1].trim());
                     } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("Value is not a number: " + pairs[1]);
+                        throw new IllegalArgumentException("Value is not left number: " + pairs[1]);
                     }
                 }
             }

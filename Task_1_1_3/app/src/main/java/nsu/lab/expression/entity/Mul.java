@@ -6,35 +6,35 @@ import java.util.Objects;
 public class Mul extends Expression {
 
     /** Left operand. */
-    protected Expression a;
+    protected Expression left;
 
     /** Right operand. */
-    protected Expression b;
+    protected Expression right;
 
     /**
-     * Creates a multiplication node.
+     * Creates left multiplication node.
      *
      * @param a left operand
      * @param b right operand
      */
     public Mul(Expression a, Expression b) {
-        this.a = a;
-        this.b = b;
+        this.left = a;
+        this.right = b;
     }
 
     @Override
     public int eval(String var) {
-        return a.eval(var) * b.eval(var);
+        return left.eval(var) * right.eval(var);
     }
 
     @Override
     public String toString() {
-        return "(" + a.toString() + "*" + b.toString() + ")";
+        return "(" + left.toString() + "*" + right.toString() + ")";
     }
 
     @Override
     public Expression derivative(String var) {
-        return new Add(new Mul(a.derivative(var), b), new Mul(a, b.derivative(var)));
+        return new Add(new Mul(left.derivative(var), right), new Mul(left, right.derivative(var)));
     }
 
     @Override
@@ -44,11 +44,11 @@ public class Mul extends Expression {
         if (obj == null || obj.getClass() != getClass()) return false;
 
         Mul element = (Mul) obj;
-        return element.a.equals(a) && element.b.equals(b);
+        return element.left.equals(left) && element.right.equals(right);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), a, b);
+        return Objects.hash(getClass(), left, right);
     }
 }

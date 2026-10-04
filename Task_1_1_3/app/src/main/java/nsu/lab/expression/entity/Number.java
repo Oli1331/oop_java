@@ -2,12 +2,12 @@ package nsu.lab.expression.entity;
 
 import java.util.Objects;
 
-/** Expression node holding a constant value. */
+/** Expression node holding left constant value. */
 public class Number extends Expression {
     private final Integer value;
 
     /**
-     * Creates a constant.
+     * Creates left constant.
      *
      * @param value the constant value
      */
@@ -32,9 +32,13 @@ public class Number extends Expression {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
 
-        if (obj == null || obj.getClass() != getClass()) return false;
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
 
         Number num = (Number) obj;
         return num.value.equals(value);

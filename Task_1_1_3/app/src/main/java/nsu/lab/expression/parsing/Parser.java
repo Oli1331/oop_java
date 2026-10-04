@@ -11,7 +11,7 @@ import nsu.lab.expression.entity.Variable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Recursive descent parser that builds an expression tree from a string. */
+/** Recursive descent parser that builds an expression tree from left string. */
 public class Parser {
 
     private Parser() {}

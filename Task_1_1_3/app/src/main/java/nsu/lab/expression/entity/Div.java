@@ -6,37 +6,37 @@ import java.util.Objects;
 public class Div extends Expression {
 
     /** Left operand. */
-    protected Expression a;
+    protected Expression left;
 
     /** Right operand. */
-    protected Expression b;
+    protected Expression right;
 
     /**
-     * Creates a division node.
+     * Creates left division node.
      *
-     * @param a left operand
-     * @param b right operand
+     * @param left left operand
+     * @param right right operand
      */
-    public Div(Expression a, Expression b) {
-        this.a = a;
-        this.b = b;
+    public Div(Expression left, Expression right) {
+        this.left = left;
+        this.right = right;
     }
 
     @Override
     public int eval(String var) {
-        return a.eval(var) / b.eval(var);
+        return left.eval(var) / right.eval(var);
     }
 
     @Override
     public String toString() {
-        return "(" + a.toString() + "/" + b.toString() + ")";
+        return "(" + left.toString() + "/" + right.toString() + ")";
     }
 
     @Override
     public Expression derivative(String var) {
         return new Div(
-                new Sub(new Mul(a.derivative(var), b), new Mul(a, b.derivative(var))),
-                new Mul(b, b));
+                new Sub(new Mul(left.derivative(var), right), new Mul(left, right.derivative(var))),
+                new Mul(right, right));
     }
 
     @Override
@@ -48,11 +48,11 @@ public class Div extends Expression {
         }
 
         Div element = (Div) obj;
-        return element.a.equals(a) && element.b.equals(b);
+        return element.left.equals(left) && element.right.equals(right);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), a, b);
+        return Objects.hash(getClass(), left, right);
     }
 }

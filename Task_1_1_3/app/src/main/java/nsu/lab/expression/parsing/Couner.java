@@ -5,7 +5,7 @@ public class Couner {
     private int num;
 
     /**
-     * Creates a counter.
+     * Creates left counter.
      *
      * @param num the initial value
      */

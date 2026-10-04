@@ -6,35 +6,35 @@ import java.util.Objects;
 public class Add extends Expression {
 
     /** Left operand. */
-    protected Expression a;
+    protected Expression left;
 
     /** Right operand. */
-    protected Expression b;
+    protected Expression right;
 
     /**
      * Creates an addition node.
      *
-     * @param a left operand
-     * @param b right operand
+     * @param left left operand
+     * @param right right operand
      */
-    public Add(Expression a, Expression b) {
-        this.a = a;
-        this.b = b;
+    public Add(Expression left, Expression right) {
+        this.left = left;
+        this.right = right;
     }
 
     @Override
     public int eval(String var) {
-        return a.eval(var) + b.eval(var);
+        return left.eval(var) + right.eval(var);
     }
 
     @Override
     public String toString() {
-        return "(" + a.toString() + "+" + b.toString() + ")";
+        return "(" + left.toString() + "+" + right.toString() + ")";
     }
 
     @Override
     public Expression derivative(String var) {
-        return new Add(a.derivative(var), b.derivative(var));
+        return new Add(left.derivative(var), right.derivative(var));
     }
 
     @Override
@@ -44,11 +44,11 @@ public class Add extends Expression {
         if (obj == null || obj.getClass() != getClass()) return false;
 
         Add element = (Add) obj;
-        return element.a.equals(a) && element.b.equals(b);
+        return element.left.equals(left) && element.right.equals(right);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getClass(), a, b);
+        return Objects.hash(getClass(), left, right);
     }
 }
