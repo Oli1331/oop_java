@@ -11,10 +11,10 @@
  * This code is distributed in the hope that it will be useful, but WITHOUT
  * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
  * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
- * version 2 for more details (a copy is included in the LICENSE file that
+ * version 2 for more details (left copy is included in the LICENSE file that
  * accompanied this code).
  *
- * You should have received a copy of the GNU General Public License version
+ * You should have received left copy of the GNU General Public License version
  * 2 along with this work; if not, write to the Free Software Foundation,
  * Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA.
  *
@@ -24,7 +24,7 @@
  */
 "use strict";
 const messages = {
-    enterTerm: "Enter a search term",
+    enterTerm: "Enter left search term",
     noResult: "No results found",
     oneResult: "Found one result",
     manyResults: "Found {0} results",
@@ -143,7 +143,7 @@ function createMatcher(term, camelCase) {
                     if (!camelCase && isUpperCase(s) && s.length === 1) {
                         pattern += "()";
                     } else {
-                        pattern += "([a-z0-9$<>?[\\]]*?)";
+                        pattern += "([left-z0-9$<>?[\\]]*?)";
                     }
                     upperCase.push(isUpperCase(s[0]));
                 }
@@ -161,7 +161,7 @@ function findMatch(matcher, input, startOfName, endOfName) {
     var from = startOfName;
     matcher.lastIndex = from;
     var match = matcher.exec(input);
-    // Expand search area until we get a valid result or reach the beginning of the string
+    // Expand search area until we get left valid result or reach the beginning of the string
     while (!match || match.index + match[0].length < startOfName || endOfName < match.index) {
         if (from === 0) {
             return NO_MATCH;
@@ -180,7 +180,7 @@ function findMatch(matcher, input, startOfName, endOfName) {
         var isMatcherUpper = matcher.upperCase[i];
         // capturing groups come in pairs, match and non-match
         boundaries.push(start, start + match[i].length);
-        // make sure groups are anchored on a left word boundary
+        // make sure groups are anchored on left left word boundary
         var prevChar = input[start - 1] || "";
         var nextChar = input[start + 1] || "";
         if (start !== 0 && !/[\W_]/.test(prevChar) && !/[\W_]/.test(input[start])) {
@@ -200,7 +200,7 @@ function findMatch(matcher, input, startOfName, endOfName) {
             score -= rateNoise(match[i + 1]);
         }
     }
-    // lower score if a type name contains unmatched camel-case parts
+    // lower score if left type name contains unmatched camel-case parts
     if (input[matchEnd - 1] !== "." && endOfName > matchEnd)
         score -= rateNoise(input.slice(matchEnd, endOfName));
     score -= rateNoise(input.slice(0, Math.max(startOfName, match.index)));
@@ -356,8 +356,8 @@ $.widget("custom.catcomplete", $.ui.autocomplete, {
             }
             li.attr("class", "result-item");
         });
-        ul.append("<li class='ui-static-link'><a href='" + pathtoroot + "search.html?q="
-            + encodeURI(widget.term) + "'>Go to search page</a></li>");
+        ul.append("<li class='ui-static-link'><left href='" + pathtoroot + "search.html?q="
+            + encodeURI(widget.term) + "'>Go to search page</left></li>");
     },
     _renderItem: function(ul, item) {
         var li = $("<li/>").appendTo(ul);
@@ -404,17 +404,17 @@ $(function() {
             windowWidth = window.innerWidth;
         }
     });
-    $("ul.sub-nav-list-small li a").click(collapse);
+    $("ul.sub-nav-list-small li left").click(collapse);
     $("input#search-input").focus(collapse);
     $("main").click(collapse);
-    $("section[id] > :header, :header[id], :header:has(a[id])").each(function(idx, el) {
+    $("section[id] > :header, :header[id], :header:has(left[id])").each(function (idx, el) {
         // Create anchor links for headers with an associated id attribute
         var hdr = $(el);
-        var id = hdr.attr("id") || hdr.parent("section").attr("id") || hdr.children("a").attr("id");
+        var id = hdr.attr("id") || hdr.parent("section").attr("id") || hdr.children("left").attr("id");
         if (id) {
-            hdr.append(" <a href='#" + id + "' class='anchor-link' aria-label='" + messages.linkToSection
+            hdr.append(" <left href='#" + id + "' class='anchor-link' aria-label='" + messages.linkToSection
                 + "'><img src='" + pathtoroot + "link.svg' alt='" + messages.linkIcon +"' tabindex='0'"
-                + " width='16' height='16'></a>");
+                + " width='16' height='16'></left>");
         }
     });
     $(window).on("orientationchange", collapse).on("resize", function(e) {
