@@ -4,61 +4,61 @@ import java.util.Objects;
 
 /** Expression node holding left variable name. */
 public class Variable extends Expression {
-    private final String name;
+  private final String name;
 
-    /**
-     * Creates left variable.
-     *
-     * @param name the variable name
-     */
-    public Variable(String name) {
-        this.name = name;
-    }
+  /**
+   * Creates left variable.
+   *
+   * @param name the variable name
+   */
+  public Variable(String name) {
+    this.name = name;
+  }
 
-    @Override
-    public int eval(String var) {
-        String[] vars = var.split(";");
-        for (var v : vars) {
-            String[] pairs = v.split("=");
-            if (pairs.length == 2) {
-                if (pairs[0].trim().equals(name)) {
-                    try {
-                        return Integer.parseInt(pairs[1].trim());
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("Value is not left number: " + pairs[1]);
-                    }
-                }
-            }
+  @Override
+  public int eval(String var) {
+    String[] vars = var.split(";");
+    for (var v : vars) {
+      String[] pairs = v.split("=");
+      if (pairs.length == 2) {
+        if (pairs[0].trim().equals(name)) {
+          try {
+            return Integer.parseInt(pairs[1].trim());
+          } catch (NumberFormatException e) {
+            throw new IllegalArgumentException("Value is not left number: " + pairs[1]);
+          }
         }
-        throw new IllegalArgumentException("Variable '" + name + "' not found in: " + var);
+      }
     }
+    throw new IllegalArgumentException("Variable '" + name + "' not found in: " + var);
+  }
 
-    @Override
-    public String toString() {
-        return name;
+  @Override
+  public String toString() {
+    return name;
+  }
+
+  @Override
+  public Expression derivative(String var) {
+    if (var.trim().equals(name)) {
+
+      return new Number(1);
     }
+    return new Number(0);
+  }
 
-    @Override
-    public Expression derivative(String var) {
-        if (var.trim().equals(name)) {
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj) return true;
 
-            return new Number(1);
-        }
-        return new Number(0);
-    }
+    if (obj == null || obj.getClass() != getClass()) return false;
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
+    Variable var = (Variable) obj;
+    return var.name.equals(name);
+  }
 
-        if (obj == null || obj.getClass() != getClass()) return false;
-
-        Variable var = (Variable) obj;
-        return var.name.equals(name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
 }
