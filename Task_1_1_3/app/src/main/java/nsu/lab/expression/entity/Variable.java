@@ -51,9 +51,13 @@ public class Variable extends Expression {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;
+        if (this == obj) {
+            return true;
+        }
 
-        if (obj == null || obj.getClass() != getClass()) return false;
+        if (obj == null || obj.getClass() != getClass()) {
+            return false;
+        }
 
         Variable var = (Variable) obj;
         return var.name.equals(name);

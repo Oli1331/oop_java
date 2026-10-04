@@ -38,8 +38,9 @@ public class Parser {
             Expression right = simpleRecursivePars(tokens, numToken);
 
             numToken.inc();
-            if (tokens.get(numToken.getNum()).type() != TokenType.RBRACKET)
+            if (tokens.get(numToken.getNum()).type() != TokenType.RBRACKET) {
                 throw new IllegalArgumentException("Closing parenthesis expected");
+            }
             switch (operator.type()) {
                 case PLUS -> {
                     return new Add(left, right);
