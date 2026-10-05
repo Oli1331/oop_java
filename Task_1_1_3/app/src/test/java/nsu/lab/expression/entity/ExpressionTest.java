@@ -1,9 +1,8 @@
 package nsu.lab.expression.entity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import nsu.lab.expression.parsing.Parser;
 import org.junit.jupiter.api.Test;
@@ -69,33 +68,34 @@ public class ExpressionTest {
         Expression e9 = Parser.pars("(x/y)");
         assertThrows(IllegalArgumentException.class, () -> e9.eval("y=y; x=5"));
         assertThrows(IllegalArgumentException.class, () -> e9.eval("t=1; x=5"));
-        assertFalse(e9.equals(null));
-        assertTrue(e9.equals(e9));
-        assertFalse(e9.equals(cratch));
+        assertNotEquals(null, e9);
+        assertEquals(e9, e9);
+        assertNotEquals(e9, cratch);
 
 
         Expression e10 = Parser.pars("(x*4)");
-        assertFalse(e10.equals(null));
-        assertTrue(e10.equals(e10));
-        assertFalse(e10.equals(cratch));
+        assertNotEquals(null, e10);
+        assertEquals(e10, e10);
+        assertNotEquals(e10, cratch);
 
 
         Expression e11 = Parser.pars("(x-4)");
-        assertFalse(e11.equals(null));
-        assertTrue(e11.equals(e11));
-        assertFalse(e11.equals(cratch));
+        assertNotEquals(null, e11);
+        assertEquals(e11, e11);
+        assertNotEquals(e11, cratch);
 
 
         Expression e12 = Parser.pars("(x+4)");
-        assertFalse(e12.equals(null));
-        assertTrue(e12.equals(e12));
-        assertFalse(e12.equals(cratch));
+        assertNotEquals(null, e12);
+        assertEquals(e12, e12);
+        assertNotEquals(e12, cratch);
 
         Expression e13 = Parser.pars("110");
-        assertFalse(e13.equals(null));
-        assertTrue(e13.equals(e13));
-        assertFalse(e13.equals(cratch));
+        assertNotEquals(null, e13);
+        assertEquals(e13, e13);
+        assertNotEquals(e13, cratch);
 
-
+        Expression e14 = Parser.pars("(1/0)");
+        assertThrows(ArithmeticException.class, () -> e14.eval(""));
     }
 }

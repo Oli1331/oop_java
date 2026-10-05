@@ -3,7 +3,7 @@ package nsu.lab.expression.parsing;
 /**
  * Mutable counter used while walking the token list.
  */
-public class Couner {
+public class Counter {
     private int num;
 
     /**
@@ -11,7 +11,7 @@ public class Couner {
      *
      * @param num the initial value
      */
-    public Couner(int num) {
+    public Counter(int num) {
         this.num = num;
     }
 

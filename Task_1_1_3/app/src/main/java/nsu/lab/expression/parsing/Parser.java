@@ -27,11 +27,11 @@ public class Parser {
     public static Expression pars(String str) {
         List<Token> tokens = new ArrayList<>();
         getToken(tokens, str);
-        Couner numToken = new Couner(0);
+        Counter numToken = new Counter(0);
         return simpleRecursivePars(tokens, numToken);
     }
 
-    private static Expression simpleRecursivePars(List<Token> tokens, Couner numToken) {
+    private static Expression simpleRecursivePars(List<Token> tokens, Counter numToken) {
         if (tokens.get(numToken.getNum()).type() == TokenType.LBRACKET) {
             numToken.inc();
             Expression left = simpleRecursivePars(tokens, numToken);

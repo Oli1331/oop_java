@@ -30,6 +30,9 @@ public class Div extends Expression {
 
     @Override
     public int eval(String var) {
+        if (right.equals(new Number(0))) {
+            throw new ArithmeticException("division by zero");
+        }
         return left.eval(var) / right.eval(var);
     }
 
