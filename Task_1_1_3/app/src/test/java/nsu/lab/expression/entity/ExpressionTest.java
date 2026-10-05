@@ -97,5 +97,7 @@ public class ExpressionTest {
 
         Expression e14 = Parser.pars("(1/0)");
         assertThrows(ArithmeticException.class, () -> e14.eval(""));
+        Expression e15 = Parser.pars("(((x)))");
+        assertEquals(new Variable("x"), e15);
     }
 }
