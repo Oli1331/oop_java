@@ -69,10 +69,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Constructs a playing card with specified rank and suit.</div>
 </dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#checkResults()" class="member-name-link">checkResults()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Compares hands and calculates scores.</div>
-</dd>
 <dt><a href="nsu/lab/blackjack/cards/SuitCard.html#CLUBS" class="member-name-link">CLUBS</a> - Enum constant in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/SuitCard.html" title="enum class in nsu.lab.blackjack.cards">SuitCard</a></dt>
 <dd>&nbsp;</dd>
 <dt><a href="nsu/lab/blackjack/core/ConsoleIo.html" class="type-name-link" title="class in nsu.lab.blackjack.core">ConsoleIo</a> - Class in <a href="nsu/lab/blackjack/core/package-summary.html">nsu.lab.blackjack.core</a></dt>
@@ -90,19 +86,19 @@ loadScripts(document, 'script');</script>
 </dl>
 <h2 class="title" id="I:D">D</h2>
 <dl class="index">
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#dealCard()" class="member-name-link">dealCard()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Deals starting cards to player and dealer.</div>
-</dd>
 <dt><a href="nsu/lab/blackjack/entity/Dealer.html" class="type-name-link" title="class in nsu.lab.blackjack.entity">Dealer</a> - Class in <a href="nsu/lab/blackjack/entity/package-summary.html">nsu.lab.blackjack.entity</a></dt>
 <dd>
 <div class="block">Represents dealer with hidden hole-card mechanics.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/entity/Dealer.html#%3Cinit%3E()" class="member-name-link">Dealer()</a> - Constructor for class nsu.lab.blackjack.entity.<a href="nsu/lab/blackjack/entity/Dealer.html" title="class in nsu.lab.blackjack.entity">Dealer</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#dealerTurn()" class="member-name-link">dealerTurn()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#DEALER_BUST" class="member-name-link">DEALER_BUST</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
 <dd>
-<div class="block">Executes automated dealer turn logic.</div>
+<div class="block">Dealer went over 21.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#DEALER_WIN" class="member-name-link">DEALER_WIN</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
+<dd>
+<div class="block">Dealer won by points.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/cards/SuitCard.html#DIAMONDS" class="member-name-link">DIAMONDS</a> - Enum constant in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/SuitCard.html" title="enum class in nsu.lab.blackjack.cards">SuitCard</a></dt>
 <dd>&nbsp;</dd>
@@ -114,6 +110,10 @@ loadScripts(document, 'script');</script>
 <dt><a href="nsu/lab/blackjack/cards/Pile.html#empty()" class="member-name-link">empty()</a> - Method in class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/Pile.html" title="class in nsu.lab.blackjack.cards">Pile</a></dt>
 <dd>
 <div class="block">Checks if the pile is empty.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/Round.html#evaluateWinner()" class="member-name-link">evaluateWinner()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/Round.html" title="class in nsu.lab.blackjack.core">Round</a></dt>
+<dd>
+<div class="block">Compares the final sums and decides the winner.</div>
 </dd>
 </dl>
 <h2 class="title" id="I:F">F</h2>
@@ -131,11 +131,11 @@ loadScripts(document, 'script');</script>
 <dl class="index">
 <dt><a href="nsu/lab/blackjack/core/GameEngine.html" class="type-name-link" title="class in nsu.lab.blackjack.core">GameEngine</a> - Class in <a href="nsu/lab/blackjack/core/package-summary.html">nsu.lab.blackjack.core</a></dt>
 <dd>
-<div class="block">Main game engine orchestrating rounds and turns.</div>
+<div class="block">Drives the blackjack game loop.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/core/GameEngine.html#%3Cinit%3E(int)" class="member-name-link">GameEngine(int)</a> - Constructor for class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
 <dd>
-<div class="block">Initializes engine with deck count.</div>
+<div class="block">Creates an engine with the given number of decks.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/core/GameStat.html" class="type-name-link" title="class in nsu.lab.blackjack.core">GameStat</a> - Class in <a href="nsu/lab/blackjack/core/package-summary.html">nsu.lab.blackjack.core</a></dt>
 <dd>
@@ -146,10 +146,6 @@ loadScripts(document, 'script');</script>
 <dt><a href="nsu/lab/blackjack/cards/Pile.html#getCard()" class="member-name-link">getCard()</a> - Method in class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/Pile.html" title="class in nsu.lab.blackjack.cards">Pile</a></dt>
 <dd>
 <div class="block">Pops and returns the top card from the pile.</div>
-</dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#getCard()" class="member-name-link">getCard()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Draws card from pile reshuffling discard pile if needed.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/entity/Participant.html#getCard(int)" class="member-name-link">getCard(int)</a> - Method in class nsu.lab.blackjack.entity.<a href="nsu/lab/blackjack/entity/Participant.html" title="class in nsu.lab.blackjack.entity">Participant</a></dt>
 <dd>
@@ -169,11 +165,7 @@ loadScripts(document, 'script');</script>
 </dd>
 <dt><a href="nsu/lab/blackjack/cards/RankCard.html#getName()" class="member-name-link">getName()</a> - Method in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/RankCard.html" title="enum class in nsu.lab.blackjack.cards">RankCard</a></dt>
 <dd>
-<div class="block">Returns the localized rank name.</div>
-</dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#getNumRound()" class="member-name-link">getNumRound()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Returns the current round counter.</div>
+<div class="block">Returns the display name of the rank.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/core/GameStat.html#getNumRound()" class="member-name-link">getNumRound()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameStat.html" title="class in nsu.lab.blackjack.core">GameStat</a></dt>
 <dd>
@@ -318,10 +310,6 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Announces tie game.</div>
 </dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#mixCard()" class="member-name-link">mixCard()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Moves all cards from discard pile back to game pile.</div>
-</dd>
 </dl>
 <h2 class="title" id="I:N">N</h2>
 <dl class="index">
@@ -359,15 +347,27 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Allocates pile memory for the given deck amount.</div>
 </dd>
+<dt><a href="nsu/lab/blackjack/core/Round.html#play()" class="member-name-link">play()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/Round.html" title="class in nsu.lab.blackjack.core">Round</a></dt>
+<dd>
+<div class="block">Deals the cards and plays the player and dealer turns.</div>
+</dd>
 <dt><a href="nsu/lab/blackjack/entity/Player.html" class="type-name-link" title="class in nsu.lab.blackjack.entity">Player</a> - Class in <a href="nsu/lab/blackjack/entity/package-summary.html">nsu.lab.blackjack.entity</a></dt>
 <dd>
 <div class="block">Represents human player participant.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/entity/Player.html#%3Cinit%3E()" class="member-name-link">Player()</a> - Constructor for class nsu.lab.blackjack.entity.<a href="nsu/lab/blackjack/entity/Player.html" title="class in nsu.lab.blackjack.entity">Player</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#playerTurn()" class="member-name-link">playerTurn()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#PLAYER_BLACKJACK" class="member-name-link">PLAYER_BLACKJACK</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
 <dd>
-<div class="block">Executes interactive player turn loop.</div>
+<div class="block">Player got blackjack.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#PLAYER_BUST" class="member-name-link">PLAYER_BUST</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
+<dd>
+<div class="block">Player went over 21.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#PLAYER_WIN" class="member-name-link">PLAYER_WIN</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
+<dd>
+<div class="block">Player won by points.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/entity/Dealer.html#printCard()" class="member-name-link">printCard()</a> - Method in class nsu.lab.blackjack.entity.<a href="nsu/lab/blackjack/entity/Dealer.html" title="class in nsu.lab.blackjack.entity">Dealer</a></dt>
 <dd>
@@ -397,6 +397,22 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Discards all held cards into the discard pile.</div>
 </dd>
+<dt><a href="nsu/lab/blackjack/core/Round.html" class="type-name-link" title="class in nsu.lab.blackjack.core">Round</a> - Class in <a href="nsu/lab/blackjack/core/package-summary.html">nsu.lab.blackjack.core</a></dt>
+<dd>
+<div class="block">Plays a single round of blackjack.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/Round.html#%3Cinit%3E(nsu.lab.blackjack.entity.Player,nsu.lab.blackjack.entity.Dealer,nsu.lab.blackjack.cards.Pile,nsu.lab.blackjack.core.ConsoleIo)" class="member-name-link">Round(Player, Dealer, Pile, ConsoleIo)</a> - Constructor for class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/Round.html" title="class in nsu.lab.blackjack.core">Round</a></dt>
+<dd>
+<div class="block">Creates a round.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html" class="type-name-link" title="enum class in nsu.lab.blackjack.core">RoundResult</a> - Enum Class in <a href="nsu/lab/blackjack/core/package-summary.html">nsu.lab.blackjack.core</a></dt>
+<dd>
+<div class="block">Possible outcomes of a round.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/GameEngine.html#run()" class="member-name-link">run()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
+<dd>
+<div class="block">Plays rounds until the user decides to stop.</div>
+</dd>
 </dl>
 <h2 class="title" id="I:S">S</h2>
 <dl class="index">
@@ -410,10 +426,6 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="nsu/lab/blackjack/cards/SuitCard.html#SPADES" class="member-name-link">SPADES</a> - Enum constant in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/SuitCard.html" title="enum class in nsu.lab.blackjack.cards">SuitCard</a></dt>
 <dd>&nbsp;</dd>
-<dt><a href="nsu/lab/blackjack/core/GameEngine.html#startRound()" class="member-name-link">startRound()</a> - Method in class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/GameEngine.html" title="class in nsu.lab.blackjack.core">GameEngine</a></dt>
-<dd>
-<div class="block">Prepares and resets hands for a new round.</div>
-</dd>
 <dt><a href="nsu/lab/blackjack/cards/SuitCard.html" class="type-name-link" title="enum class in nsu.lab.blackjack.cards">SuitCard</a> - Enum Class in <a href="nsu/lab/blackjack/cards/package-summary.html">nsu.lab.blackjack.cards</a></dt>
 <dd>
 <div class="block">Enumeration representing playing card suits.</div>
@@ -433,6 +445,10 @@ loadScripts(document, 'script');</script>
 <dd>&nbsp;</dd>
 <dt><a href="nsu/lab/blackjack/cards/RankCard.html#THREE" class="member-name-link">THREE</a> - Enum constant in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/RankCard.html" title="enum class in nsu.lab.blackjack.cards">RankCard</a></dt>
 <dd>&nbsp;</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#TIE" class="member-name-link">TIE</a> - Enum constant in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
+<dd>
+<div class="block">Equal points.</div>
+</dd>
 <dt><a href="nsu/lab/blackjack/cards/Card.html#toString()" class="member-name-link">toString()</a> - Method in class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/Card.html" title="class in nsu.lab.blackjack.cards">Card</a></dt>
 <dd>
 <div class="block">Formats card to string representation.</div>
@@ -457,12 +473,21 @@ loadScripts(document, 'script');</script>
 <dd>
 <div class="block">Returns the enum constant of this class with the specified name.</div>
 </dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#valueOf(java.lang.String)" class="member-name-link">valueOf(String)</a> - Static method in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
+<dd>
+<div class="block">Returns the enum constant of this class with the specified name.</div>
+</dd>
 <dt><a href="nsu/lab/blackjack/cards/RankCard.html#values()" class="member-name-link">values()</a> - Static method in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/RankCard.html" title="enum class in nsu.lab.blackjack.cards">RankCard</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
 </dd>
 <dt><a href="nsu/lab/blackjack/cards/SuitCard.html#values()" class="member-name-link">values()</a> - Static method in enum class nsu.lab.blackjack.cards.<a href="nsu/lab/blackjack/cards/SuitCard.html" title="enum class in nsu.lab.blackjack.cards">SuitCard</a></dt>
+<dd>
+<div class="block">Returns an array containing the constants of this enum class, in
+the order they are declared.</div>
+</dd>
+<dt><a href="nsu/lab/blackjack/core/RoundResult.html#values()" class="member-name-link">values()</a> - Static method in enum class nsu.lab.blackjack.core.<a href="nsu/lab/blackjack/core/RoundResult.html" title="enum class in nsu.lab.blackjack.core">RoundResult</a></dt>
 <dd>
 <div class="block">Returns an array containing the constants of this enum class, in
 the order they are declared.</div>
