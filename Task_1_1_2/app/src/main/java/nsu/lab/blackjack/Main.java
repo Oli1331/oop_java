@@ -32,11 +32,6 @@ public class Main {
 
         GameEngine game = new GameEngine(countDeck);
 
-        while (game.getNumRound() < 21 && game.startRound()) {
-            game.dealCard();
-            game.playerTurn();
-            game.dealerTurn();
-            game.checkResults();
-        }
+        game.run();
     }
 }

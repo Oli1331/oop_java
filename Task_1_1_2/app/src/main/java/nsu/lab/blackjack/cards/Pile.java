@@ -5,8 +5,8 @@ import java.util.concurrent.ThreadLocalRandom;
 /** Represents a card deck or discard pile. */
 public class Pile {
     private final Card[] card;
-    private int countCard;
     private final int size;
+    private int countCard;
 
     /**
      * Allocates pile memory for the given deck amount.

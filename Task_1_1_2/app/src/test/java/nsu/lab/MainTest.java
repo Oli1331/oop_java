@@ -9,6 +9,6 @@ public class MainTest {
     /** Verifies main loop termination. */
     @Test
     void loopOutTest() {
-        Main.main(new String[] {"0"});
+        Main.main(new String[]{"0"});
     }
 }
