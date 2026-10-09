@@ -1,0 +1,37 @@
+package nsu.lab.blackjack;
+
+import nsu.lab.blackjack.core.GameEngine;
+
+/** Main application entry point for the Blackjack game. */
+public class Main {
+    /**
+     * Runs the blackjack simulation and game loop.
+     *
+     * @param args command-line arguments specifying deck count.
+     */
+    public static void main(String[] args) {
+        int countDeck;
+        if (args.length == 0) {
+            countDeck = 1;
+        } else {
+            try {
+                int value = Integer.parseInt(args[0]);
+                if (value < 0) {
+                    countDeck = 1;
+                } else if (value > 100) {
+                    countDeck = 100;
+                } else if (value == 0) {
+                    return;
+                } else {
+                    countDeck = value;
+                }
+            } catch (NumberFormatException e) {
+                countDeck = 1;
+            }
+        }
+
+        GameEngine game = new GameEngine(countDeck);
+
+        game.run();
+    }
+}
