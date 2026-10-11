@@ -53,11 +53,11 @@ public class ExpressionTest {
 
     @ParameterizedTest(name = "Test eval{index}: experssion {0} with args {1} must be {2}")
     @CsvSource({
-            "(x+y), 'x=1;y=2', 3",
-            "(x-y), 'x=1;y=2', -1",
-            "(x*y), 'x=1;y=2', 2",
-            "(y/x), 'x=1;y=2', 2",
-            "(17*3), '', 51"
+        "(x+y), 'x=1;y=2', 3",
+        "(x-y), 'x=1;y=2', -1",
+        "(x*y), 'x=1;y=2', 2",
+        "(y/x), 'x=1;y=2', 2",
+        "(17*3), '', 51"
     })
     void evalTest(String exp, String var, int res) {
         Expression expression = Parser.pars(exp);
@@ -66,10 +66,10 @@ public class ExpressionTest {
 
     @ParameterizedTest(name = "Test derivative{index}: experssion {0} with args {1} must be {2}")
     @CsvSource({
-            "(x+y), 'x', (1+0)",
-            "(x-y), 'y', (0-1)",
-            "(x*y), 'x', ((1*y)+(x*0))",
-            "(x/y), 'x', (((1*y)-(x*0))/(y*y))"
+        "(x+y), 'x', (1+0)",
+        "(x-y), 'y', (0-1)",
+        "(x*y), 'x', ((1*y)+(x*0))",
+        "(x/y), 'x', (((1*y)-(x*0))/(y*y))"
     })
     void derivativeTest(String exp, String var, String dexp) {
         Expression expression = Parser.pars(exp);
@@ -82,7 +82,7 @@ public class ExpressionTest {
      * Checks parsing, evaluation and differentiation.
      */
     @Test
-    void evalTest() {
+    void allTest() {
         Expression e1 = new Add(new Number(3),
                 new Mul(new Number(2), new Variable("x")));
         assertEquals(7, e1.eval("x=2"));
