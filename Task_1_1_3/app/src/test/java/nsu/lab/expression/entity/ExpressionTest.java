@@ -6,11 +6,77 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import nsu.lab.expression.parsing.Parser;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 /**
  * Tests parsing, evaluation and differentiation of expressions.
  */
 public class ExpressionTest {
+
+    @Test
+    void parseTest() {
+        assertEquals(new Variable("x"), Parser.pars("(((x)))"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")),
+                Parser.pars("((x)+(y))"));
+        assertEquals(new Add(new Variable("a"), new Mul(new Variable("b"),
+                        new Variable("c"))),
+                Parser.pars("((a)+((b)*(c)))"));
+
+        assertEquals(new Add(new Variable("alpha"), new Variable("beta")),
+                Parser.pars("(alpha+beta)"));
+        assertEquals(new Mul(new Variable("veryLongVariableName"),
+                        new Variable("short")),
+                Parser.pars("(veryLongVariableName * short)"));
+
+        assertEquals(new Add(new Variable("x"), new Variable("y")),
+                Parser.pars("( x + y )"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")),
+                Parser.pars("( x+ y )"));
+        assertEquals(new Add(new Variable("x"), new Variable("y")),
+                Parser.pars("( x +y )"));
+
+        assertEquals(new Number(-5), Parser.pars("(-5)"));
+        assertEquals(new Add(new Variable("x"), new Number(-3)),
+                Parser.pars("(x + (-3))"));
+
+        assertEquals(new Add(
+                new Mul(new Variable("a"), new Variable("b")),
+                new Div(
+                        new Sub(new Variable("c"), new Variable("d")),
+                        new Add(new Number(1), new Number(2))
+                )
+        ), Parser.pars("((a*b)+((c-d)/(1+2)))"));
+
+
+    }
+
+    @ParameterizedTest(name = "Test eval{index}: experssion {0} with args {1} must be {2}")
+    @CsvSource({
+            "(x+y), 'x=1;y=2', 3",
+            "(x-y), 'x=1;y=2', -1",
+            "(x*y), 'x=1;y=2', 2",
+            "(y/x), 'x=1;y=2', 2",
+            "(17*3), '', 51"
+    })
+    void evalTest(String exp, String var, int res) {
+        Expression expression = Parser.pars(exp);
+        assertEquals(res, expression.eval(var));
+    }
+
+    @ParameterizedTest(name = "Test derivative{index}: experssion {0} with args {1} must be {2}")
+    @CsvSource({
+            "(x+y), 'x', (1+0)",
+            "(x-y), 'y', (0-1)",
+            "(x*y), 'x', ((1*y)+(x*0))",
+            "(x/y), 'x', (((1*y)-(x*0))/(y*y))"
+    })
+    void derivativeTest(String exp, String var, String dexp) {
+        Expression expression = Parser.pars(exp);
+        Expression dexpression = Parser.pars(dexp);
+        assertEquals(dexpression, expression.derivative(var));
+    }
+
 
     /**
      * Checks parsing, evaluation and differentiation.
@@ -51,7 +117,7 @@ public class ExpressionTest {
                 new Mul(new Variable("x"), new Number(0)));
         assertEquals(check6, e6.derivative("x"));
 
-        assertThrows(IllegalArgumentException.class, () -> Parser.pars("(2--2)"));
+        // assertThrows(IllegalArgumentException.class, () -> Parser.pars("(2--2)"));
 
         Expression e7 = Parser.pars("(x/y)");
         assertEquals(1, e7.eval("y=4; x=5"));
@@ -100,4 +166,6 @@ public class ExpressionTest {
         Expression e15 = Parser.pars("(((x)))");
         assertEquals(new Variable("x"), e15);
     }
+
+
 }

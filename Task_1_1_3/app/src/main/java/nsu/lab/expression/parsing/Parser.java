@@ -37,6 +37,9 @@ public class Parser {
             Expression left = simpleRecursivePars(tokens, numToken);
 
             numToken.inc();
+            if (tokens.get(numToken.getNum()).type() == TokenType.RBRACKET) {
+                return left;
+            }
             Token operator = tokens.get(numToken.getNum());
 
             numToken.inc();
@@ -68,6 +71,12 @@ public class Parser {
         }
         if (tokens.get(numToken.getNum()).type() == TokenType.NUMBER) {
             return new Number(Integer.parseInt(tokens.get(numToken.getNum()).text()));
+        }
+        if (tokens.get(numToken.getNum()).type() == TokenType.MINUS) {
+            numToken.inc();
+            if (tokens.get(numToken.getNum()).type() == TokenType.NUMBER) {
+                return new Number(-1 * Integer.parseInt(tokens.get(numToken.getNum()).text()));
+            }
         }
         throw new IllegalArgumentException("String format error: " + tokens.get(numToken.getNum()));
     }
