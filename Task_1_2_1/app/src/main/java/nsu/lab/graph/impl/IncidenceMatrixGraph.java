@@ -1,9 +1,11 @@
-package nsu.lab.graph;
+package nsu.lab.graph.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import nsu.lab.graph.api.Edge;
+import nsu.lab.graph.api.Graph;
 
 public class IncidenceMatrixGraph<T> extends Graph<T> {
     int[][] incidenceMatrix;
@@ -41,21 +43,25 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
             return false;
         }
         int currentEdgeInd = 0;
-        for (int i = 0; i < countEdge; i++) {
+        while (currentEdgeInd < countEdge) {
             if (incidenceMatrix[currentEdgeInd][indVertex] != 0) {
                 Edge<T> edge = indToEdge.get(currentEdgeInd);
-                T from = edge.from();
-                T to = edge.to();
-                delEdge(from, to);
+                delEdge(edge.from(), edge.to());
             } else {
                 currentEdgeInd++;
             }
         }
         countVertex--;
         vertexToInd.remove(vertex);
-        indToEdge.set(indVertex, indToEdge.get(countVertex));
-        indToEdge.remove(countVertex);
-        for (int i = 0; i < incidenceMatrix.length; i++) {
+
+        if (indVertex != countVertex) {
+            T lastVertex = indToVertex.get(countVertex);
+            vertexToInd.put(lastVertex, indVertex);
+            indToVertex.set(indVertex, lastVertex);
+        }
+        indToVertex.remove(countVertex);
+
+        for (int i = 0; i < countEdge; i++) {
             incidenceMatrix[i][indVertex] = incidenceMatrix[i][countVertex];
             incidenceMatrix[i][countVertex] = 0;
         }
@@ -65,7 +71,7 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
     @Override
     public boolean addEdge(T vertex1, T vertex2) {
         Edge<T> edge = new Edge<>(vertex1, vertex2);
-        if (edgeToInd.get(edge) == null) {
+        if (edgeToInd.containsKey(edge)) {
             return false;
         }
         addVertex(vertex1);
@@ -80,6 +86,7 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
         if (indexVertex1 == indexVertex2) {
             incidenceMatrix[countEdge][indexVertex2] = 2;
         }
+        countEdge++;
         return true;
     }
 
@@ -87,22 +94,23 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
     @Override
     public boolean delEdge(T vertex1, T vertex2) {
         Edge<T> edge = new Edge<>(vertex1, vertex2);
-        Integer indEdge = edgeToInd.get(edge);
+        Integer indEdge = edgeToInd.remove(edge);
         if (indEdge == null) {
             return false;
         }
         countEdge--;
-        edgeToInd.remove(edge);
-        indToEdge.set(indEdge, indToEdge.get(countEdge));
-        indToEdge.remove(countEdge);
-        if (countEdge == 0) {
-            for (int i = 0; i < incidenceMatrix[0].length; i++) {
-                incidenceMatrix[indEdge][i] = 0;
-            }
-            return true;
+
+        if (indEdge != countEdge) {
+            Edge<T> lastEdge = indToEdge.get(countEdge);
+            edgeToInd.put(lastEdge, indEdge);
+            indToEdge.set(indEdge, lastEdge);
+            System.arraycopy(incidenceMatrix[countEdge], 0, incidenceMatrix[indEdge], 0, countVertex);
         }
-        System.arraycopy(incidenceMatrix[indEdge], 0, incidenceMatrix[countEdge], 0,
-                incidenceMatrix[0].length);
+        indToEdge.remove(countEdge);
+
+        for (int i = 0; i < countVertex; i++) {
+            incidenceMatrix[countEdge][i] = 0;
+        }
         return true;
     }
 
@@ -114,7 +122,7 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
         }
         List<T> result = new ArrayList<>();
         for (int i = 0; i < countEdge; i++) {
-            if (incidenceMatrix[i][indVertex] == -1) {
+            if (incidenceMatrix[i][indVertex] == -1 || incidenceMatrix[i][indVertex] == 2) {
                 T neighbor = indToEdge.get(i).to();
                 result.add(neighbor);
             }

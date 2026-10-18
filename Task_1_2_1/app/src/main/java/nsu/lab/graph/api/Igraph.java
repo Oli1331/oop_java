@@ -1,6 +1,8 @@
-package nsu.lab.graph;
+package nsu.lab.graph.api;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.function.Function;
 
 public interface Igraph<T> {
     boolean addVertex(T vertex);
@@ -13,7 +15,7 @@ public interface Igraph<T> {
 
     List<T> getNeighbors(T vertex);
 
-    boolean readFromFile(String path);
+    void readFromFile(String path, Function<String, T> parser) throws IOException;
 
 
 }

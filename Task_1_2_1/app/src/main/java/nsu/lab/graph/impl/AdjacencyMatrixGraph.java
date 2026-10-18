@@ -1,9 +1,10 @@
-package nsu.lab.graph;
+package nsu.lab.graph.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import nsu.lab.graph.api.Graph;
 
 public class AdjacencyMatrixGraph<T> extends Graph<T> {
     private final Map<T, Integer> elementToInd = new HashMap<>();
@@ -29,27 +30,33 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
 
     @Override
     public boolean delVertex(T vertex) {
-        if (!elementToInd.containsKey(vertex)) {
+        Integer delIndex = elementToInd.remove(vertex);
+        if (delIndex == null) {
             return false;
         }
-        int delIndex = elementToInd.get(vertex);
         int lastIndex = count - 1;
 
-        elementToInd.remove(vertex);
-        count--;
-        if (count == 0) {
-            return true;
+        if (delIndex != lastIndex) {
+            T lastVertex = indToElement.get(lastIndex);
+            boolean selfLoop = adjacencyMatrix[lastIndex][lastIndex];
+
+            for (int i = 0; i < count; i++) {
+                adjacencyMatrix[delIndex][i] = adjacencyMatrix[lastIndex][i];
+                adjacencyMatrix[i][delIndex] = adjacencyMatrix[i][lastIndex];
+            }
+            adjacencyMatrix[delIndex][delIndex] = selfLoop;
+
+            elementToInd.put(lastVertex, delIndex);
+            indToElement.set(delIndex, lastVertex);
         }
-        for (int i = 0; i < count + 1; i++) {
-            adjacencyMatrix[delIndex][i] = adjacencyMatrix[lastIndex][i];
-            adjacencyMatrix[i][delIndex] = adjacencyMatrix[i][lastIndex];
-        }
-        adjacencyMatrix[delIndex][delIndex] = adjacencyMatrix[lastIndex][lastIndex];
-        for (int i = 0; i < count + 1; i++) {
+
+        for (int i = 0; i < count; i++) {
             adjacencyMatrix[lastIndex][i] = false;
             adjacencyMatrix[i][lastIndex] = false;
         }
-        indToElement.add(delIndex, indToElement.get(lastIndex));
+
+        indToElement.remove(lastIndex);
+        count--;
         return true;
     }
 
@@ -70,7 +77,7 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
         Integer index1 = elementToInd.get(vertex1);
         Integer index2 = elementToInd.get(vertex2);
 
-        if ((index1 == null) || index2 == null) {
+        if ((index1 == null) || index2 == null || (!adjacencyMatrix[index1][index2])) {
             return false;
         }
         adjacencyMatrix[index1][index2] = false;
@@ -80,7 +87,10 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
     @Override
     public List<T> getNeighbors(T vertex) {
         List<T> res = new ArrayList<>();
-        int CurrentIndex = elementToInd.get(vertex);
+        Integer CurrentIndex = elementToInd.get(vertex);
+        if (CurrentIndex == null) {
+            return res;
+        }
         for (int i = 0; i < count; i++) {
             if (adjacencyMatrix[CurrentIndex][i]) {
                 res.add(indToElement.get(i));
@@ -92,7 +102,7 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
 
     private void provideCapacity() {
         if (count >= adjacencyMatrix.length) {
-            int newCapacity = adjacencyMatrix.length * 2;
+            int newCapacity = 1 + adjacencyMatrix.length * 2;
             boolean[][] newMatrix = new boolean[newCapacity][newCapacity];
 
             for (int i = 0; i < adjacencyMatrix.length; i++) {

@@ -1,4 +1,4 @@
-package nsu.lab.graph;
+package nsu.lab.graph.api;
 
 public record Edge<T>(T from, T to) {
 
