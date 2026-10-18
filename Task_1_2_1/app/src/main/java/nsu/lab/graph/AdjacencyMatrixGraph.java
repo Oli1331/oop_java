@@ -1,0 +1,106 @@
+package nsu.lab.graph;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AdjacencyMatrixGraph<T> extends Graph<T> {
+    private final Map<T, Integer> elementToInd = new HashMap<>();
+    private final List<T> indToElement = new ArrayList<>();
+    private boolean[][] adjacencyMatrix;
+    private int count = 0;
+
+    public AdjacencyMatrixGraph(int size) {
+        adjacencyMatrix = new boolean[size][size];
+    }
+
+    @Override
+    public boolean addVertex(T vertex) {
+        if (elementToInd.containsKey(vertex)) {
+            return false;
+        }
+        provideCapacity();
+        elementToInd.put(vertex, count);
+        indToElement.add(count, vertex);
+        count++;
+        return true;
+    }
+
+    @Override
+    public boolean delVertex(T vertex) {
+        if (!elementToInd.containsKey(vertex)) {
+            return false;
+        }
+        int delIndex = elementToInd.get(vertex);
+        int lastIndex = count - 1;
+
+        elementToInd.remove(vertex);
+        count--;
+        if (count == 0) {
+            return true;
+        }
+        for (int i = 0; i < count + 1; i++) {
+            adjacencyMatrix[delIndex][i] = adjacencyMatrix[lastIndex][i];
+            adjacencyMatrix[i][delIndex] = adjacencyMatrix[i][lastIndex];
+        }
+        adjacencyMatrix[delIndex][delIndex] = adjacencyMatrix[lastIndex][lastIndex];
+        for (int i = 0; i < count + 1; i++) {
+            adjacencyMatrix[lastIndex][i] = false;
+            adjacencyMatrix[i][lastIndex] = false;
+        }
+        indToElement.add(delIndex, indToElement.get(lastIndex));
+        return true;
+    }
+
+    @Override
+    public boolean addEdge(T vertex1, T vertex2) {
+        Integer index1 = elementToInd.get(vertex1);
+        Integer index2 = elementToInd.get(vertex2);
+
+        if ((index1 == null) || (index2 == null) || adjacencyMatrix[index1][index2]) {
+            return false;
+        }
+        adjacencyMatrix[index1][index2] = true;
+        return true;
+    }
+
+    @Override
+    public boolean delEdge(T vertex1, T vertex2) {
+        Integer index1 = elementToInd.get(vertex1);
+        Integer index2 = elementToInd.get(vertex2);
+
+        if ((index1 == null) || index2 == null) {
+            return false;
+        }
+        adjacencyMatrix[index1][index2] = false;
+        return true;
+    }
+
+    @Override
+    public List<T> getNeighbors(T vertex) {
+        List<T> res = new ArrayList<>();
+        int CurrentIndex = elementToInd.get(vertex);
+        for (int i = 0; i < count; i++) {
+            if (adjacencyMatrix[CurrentIndex][i]) {
+                res.add(indToElement.get(i));
+            }
+        }
+        return res;
+    }
+
+
+    private void provideCapacity() {
+        if (count >= adjacencyMatrix.length) {
+            int newCapacity = adjacencyMatrix.length * 2;
+            boolean[][] newMatrix = new boolean[newCapacity][newCapacity];
+
+            for (int i = 0; i < adjacencyMatrix.length; i++) {
+                System.arraycopy(adjacencyMatrix[i], 0, newMatrix[i], 0, count);
+            }
+
+            adjacencyMatrix = newMatrix;
+        }
+    }
+
+}
