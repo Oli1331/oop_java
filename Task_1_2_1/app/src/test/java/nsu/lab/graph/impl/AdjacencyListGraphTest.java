@@ -12,6 +12,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * Tests for {@link AdjacencyListGraph}.
+ */
 class AdjacencyListGraphTest {
     private AdjacencyListGraph<String> graph;
 
