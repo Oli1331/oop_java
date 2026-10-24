@@ -86,12 +86,12 @@ public abstract class Graph<T> implements Igraph<T> {
 
     @Override
     public String toString() {
-        StringBuffer res=new StringBuffer();
-        for (var v:getVertices()){
-            res.append(v);
-            res.append(": ");
-            res.append(getNeighbors(v));
-            res.append("\n");
+        StringBuilder res = new StringBuilder();
+        for (T v : getVertices()) {
+            res.append(v)
+               .append(": ")
+               .append(getNeighbors(v))
+               .append("\n");
         }
         return res.toString();
     }
