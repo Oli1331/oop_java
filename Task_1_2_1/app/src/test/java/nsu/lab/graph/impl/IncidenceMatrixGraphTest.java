@@ -74,4 +74,19 @@ class IncidenceMatrixGraphTest {
         assertEquals(List.of("C"), graph.getNeighbors("A"));
         assertNull(graph.getNeighbors("B"));
     }
+
+    @Test
+    void testKahnSort() {
+        for (var v : List.of("A", "B", "C", "D", "E")) {
+            graph.addVertex(v);
+        }
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "D");
+        graph.addEdge("D", "E");
+        assertEquals(List.of("A", "B", "C", "D", "E"), graph.kahnSort());
+
+        graph.addEdge("E", "A");
+        assertNull(graph.kahnSort());
+    }
 }

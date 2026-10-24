@@ -1,6 +1,7 @@
 package nsu.lab.graph.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,9 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
 
     public AdjacencyMatrixGraph(int size) {
         adjacencyMatrix = new boolean[size][size];
+    }
+    public AdjacencyMatrixGraph() {
+        adjacencyMatrix = new boolean[1][1];
     }
 
     @Override
@@ -111,6 +115,11 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
 
             adjacencyMatrix = newMatrix;
         }
+    }
+
+    @Override
+    public Collection<T> getVertices() {
+        return indToElement;
     }
 
 }

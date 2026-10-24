@@ -58,6 +58,7 @@ tasks.named('test') {
 }
 run {
     standardInput = System.in
+    args("E:\\projects\\JavaProject\\Task_1_2_1\\app\\src\\test\\resources\\graph33.txt")
 }
 build {
     dependsOn javadoc

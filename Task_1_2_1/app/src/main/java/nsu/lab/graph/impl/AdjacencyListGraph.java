@@ -1,6 +1,7 @@
 package nsu.lab.graph.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -16,6 +17,7 @@ public class AdjacencyListGraph<T> extends Graph<T> {
             return false;
         }
         adjacencyList.put(vertex, new ArrayList<>());
+
         return true;
     }
 
@@ -58,4 +60,11 @@ public class AdjacencyListGraph<T> extends Graph<T> {
         }
         return neighbors;
     }
+
+    @Override
+    public Collection<T> getVertices() {
+        return adjacencyList.keySet();
+    }
+
+
 }

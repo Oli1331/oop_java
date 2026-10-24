@@ -2,6 +2,7 @@ package nsu.lab.graph.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -73,5 +74,20 @@ class AdjacencyMatrixGraphTest {
     @Test
     void testGetNeighborsForNonExistentVertex() {
         assertTrue(graph.getNeighbors("NONE").isEmpty());
+    }
+
+    @Test
+    void testKahnSort() {
+        for (var v : List.of("A", "B", "C", "D", "E")) {
+            graph.addVertex(v);
+        }
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "D");
+        graph.addEdge("D", "E");
+        assertEquals(List.of("A", "B", "C", "D", "E"), graph.kahnSort());
+
+        graph.addEdge("E", "A");
+        assertNull(graph.kahnSort());
     }
 }

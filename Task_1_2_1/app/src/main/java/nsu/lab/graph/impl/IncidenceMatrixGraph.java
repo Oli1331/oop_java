@@ -1,6 +1,7 @@
 package nsu.lab.graph.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,12 +71,13 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
 
     @Override
     public boolean addEdge(T vertex1, T vertex2) {
+        if (vertexToInd.get(vertex1) == null || vertexToInd.get(vertex2) == null) {
+            return false;
+        }
         Edge<T> edge = new Edge<>(vertex1, vertex2);
         if (edgeToInd.containsKey(edge)) {
             return false;
         }
-        addVertex(vertex1);
-        addVertex(vertex2);
         provideRow();
         int indexVertex1 = vertexToInd.get(vertex1);
         int indexVertex2 = vertexToInd.get(vertex2);
@@ -155,5 +157,10 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
 
             incidenceMatrix = newMatrix;
         }
+    }
+
+    @Override
+    public Collection<T> getVertices() {
+        return indToVertex;
     }
 }

@@ -50,7 +50,7 @@ public abstract class Graph<T> implements Igraph<T> {
         Map<T, Integer> inDegree = new HashMap<>();
         List<T> result = new ArrayList<>();
 
-        for (T v : getVertices()) {
+        for (T v : vertex) {
             for (T neighbourV : getNeighbors(v)) {
                 if (!inDegree.containsKey(neighbourV)) {
                     inDegree.put(neighbourV, 1);
@@ -60,7 +60,7 @@ public abstract class Graph<T> implements Igraph<T> {
             }
         }
 
-        for (T v : getVertices()) {
+        for (T v : vertex) {
             if (inDegree.get(v) == null || inDegree.get(v) == 0) {
                 queue.add(v);
             }
@@ -77,10 +77,12 @@ public abstract class Graph<T> implements Igraph<T> {
                 }
             }
         }
-        if (result.size() == vertex.size()) {
-            return result;
+
+        if (result.size() != vertex.size()) {
+            throw new IllegalStateException("Graph contains a cycle, topological sort is impossible.");
         }
-        return null;
+        return result;
+
     }
 
 
