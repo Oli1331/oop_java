@@ -34,7 +34,6 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
         incidenceMatrix = new int[countEdge][countVertex];
     }
 
-
     @Override
     public boolean addVertex(T vertex) {
         if (vertexToInd.containsKey(vertex)) {
@@ -102,7 +101,6 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
         return true;
     }
 
-
     @Override
     public boolean delEdge(T vertex1, T vertex2) {
         Edge<T> edge = new Edge<>(vertex1, vertex2);
@@ -116,7 +114,8 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
             Edge<T> lastEdge = indToEdge.get(countEdge);
             edgeToInd.put(lastEdge, indEdge);
             indToEdge.set(indEdge, lastEdge);
-            System.arraycopy(incidenceMatrix[countEdge], 0, incidenceMatrix[indEdge], 0, countVertex);
+            System.arraycopy(incidenceMatrix[countEdge], 0,
+                    incidenceMatrix[indEdge], 0, countVertex);
         }
         indToEdge.remove(countEdge);
 
@@ -140,7 +139,6 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
             }
         }
         return result;
-
     }
 
     private void provideColumn() {
@@ -149,7 +147,8 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
             int[][] newMatrix = new int[incidenceMatrix.length][newCapacityVertex];
 
             for (int i = 0; i < incidenceMatrix.length; i++) {
-                System.arraycopy(incidenceMatrix[i], 0, newMatrix[i], 0, incidenceMatrix[0].length);
+                System.arraycopy(incidenceMatrix[i], 0,
+                        newMatrix[i], 0, incidenceMatrix[0].length);
             }
 
             incidenceMatrix = newMatrix;
@@ -162,7 +161,8 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
             int[][] newMatrix = new int[newCapacityEdge][incidenceMatrix[0].length];
 
             for (int i = 0; i < incidenceMatrix.length; i++) {
-                System.arraycopy(incidenceMatrix[i], 0, newMatrix[i], 0, incidenceMatrix[0].length);
+                System.arraycopy(incidenceMatrix[i], 0,
+                        newMatrix[i], 0, incidenceMatrix[0].length);
             }
 
             incidenceMatrix = newMatrix;

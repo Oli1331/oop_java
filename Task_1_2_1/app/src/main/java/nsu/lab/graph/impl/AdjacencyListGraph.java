@@ -47,7 +47,9 @@ public class AdjacencyListGraph<T> extends Graph<T> {
     @Override
     public boolean addEdge(T vertex1, T vertex2) {
         List<T> currentList = adjacencyList.get(vertex1);
-        if (currentList == null || !adjacencyList.containsKey(vertex2) || currentList.contains(vertex2)) {
+        if (currentList == null
+                || !adjacencyList.containsKey(vertex2)
+                || currentList.contains(vertex2)) {
             return false;
         }
         currentList.add(vertex2);
@@ -76,6 +78,4 @@ public class AdjacencyListGraph<T> extends Graph<T> {
     public Collection<T> getVertices() {
         return adjacencyList.keySet();
     }
-
-
 }

@@ -103,12 +103,11 @@ public abstract class Graph<T> implements Igraph<T> {
         }
 
         if (result.size() != vertex.size()) {
-            throw new IllegalStateException("Graph contains a cycle, topological sort is impossible.");
+            throw new IllegalStateException(
+                    "Graph contains a cycle, topological sort is impossible.");
         }
         return result;
-
     }
-
 
     @Override
     public String toString() {

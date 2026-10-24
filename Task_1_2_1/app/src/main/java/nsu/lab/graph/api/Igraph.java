@@ -11,6 +11,7 @@ import java.util.function.Function;
  * @param <T> vertex type
  */
 public interface Igraph<T> {
+
     /**
      * Adds a vertex to the graph.
      *
@@ -56,7 +57,7 @@ public interface Igraph<T> {
     /**
      * Reads graph from a file.
      *
-     * @param path   file path
+     * @param path file path
      * @param parser parser function for vertices
      * @throws IOException if an I/O error occurs
      */

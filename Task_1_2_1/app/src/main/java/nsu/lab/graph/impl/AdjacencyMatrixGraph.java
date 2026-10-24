@@ -105,18 +105,17 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
     @Override
     public List<T> getNeighbors(T vertex) {
         List<T> res = new ArrayList<>();
-        Integer CurrentIndex = elementToInd.get(vertex);
-        if (CurrentIndex == null) {
+        Integer currentIndex = elementToInd.get(vertex);
+        if (currentIndex == null) {
             return res;
         }
         for (int i = 0; i < count; i++) {
-            if (adjacencyMatrix[CurrentIndex][i]) {
+            if (adjacencyMatrix[currentIndex][i]) {
                 res.add(indToElement.get(i));
             }
         }
         return res;
     }
-
 
     private void provideCapacity() {
         if (count >= adjacencyMatrix.length) {
@@ -135,5 +134,4 @@ public class AdjacencyMatrixGraph<T> extends Graph<T> {
     public Collection<T> getVertices() {
         return indToElement;
     }
-
 }
