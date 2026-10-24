@@ -4,7 +4,15 @@ import java.io.IOException;
 import nsu.lab.graph.api.Graph;
 import nsu.lab.graph.impl.AdjacencyMatrixGraph;
 
+/**
+ * Main application class.
+ */
 public class Main {
+    /**
+     * Application entry point.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 
         if (args.length == 1) {

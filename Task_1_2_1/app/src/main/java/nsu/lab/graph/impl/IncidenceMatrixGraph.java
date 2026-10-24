@@ -8,6 +8,11 @@ import java.util.Map;
 import nsu.lab.graph.api.Edge;
 import nsu.lab.graph.api.Graph;
 
+/**
+ * Incidence matrix representation of a graph.
+ *
+ * @param <T> vertex type
+ */
 public class IncidenceMatrixGraph<T> extends Graph<T> {
     int[][] incidenceMatrix;
     int countVertex;
@@ -17,7 +22,12 @@ public class IncidenceMatrixGraph<T> extends Graph<T> {
     Map<Edge<T>, Integer> edgeToInd = new HashMap<>();
     List<Edge<T>> indToEdge = new ArrayList<>();
 
-
+    /**
+     * Constructs graph with initial capacity.
+     *
+     * @param countVertex initial vertex capacity
+     * @param countEdge   initial edge capacity
+     */
     public IncidenceMatrixGraph(int countVertex, int countEdge) {
         this.countVertex = 0;
         this.countEdge = 0;

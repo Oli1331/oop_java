@@ -13,19 +13,38 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.function.Function;
 
+/**
+ * Abstract graph class.
+ *
+ * @param <T> vertex type
+ */
 public abstract class Graph<T> implements Igraph<T> {
+
+    /**
+     * Default constructor.
+     */
+    public Graph() {
+    }
+
+    @Override
     public abstract boolean addVertex(T vertex);
 
+    @Override
     public abstract boolean delVertex(T vertex);
 
+    @Override
     public abstract boolean addEdge(T vertex1, T vertex2);
 
+    @Override
     public abstract boolean delEdge(T vertex1, T vertex2);
 
+    @Override
     public abstract List<T> getNeighbors(T vertex);
 
+    @Override
     public abstract Collection<T> getVertices();
 
+    @Override
     public void readFromFile(String strPath, Function<String, T> parser) throws IOException {
         Path path = Path.of(strPath);
         try (BufferedReader reader = Files.newBufferedReader(path)) {
@@ -44,6 +63,11 @@ public abstract class Graph<T> implements Igraph<T> {
         }
     }
 
+    /**
+     * Performs Kahn's topological sort on the graph.
+     *
+     * @return sorted list of vertices
+     */
     public List<T> kahnSort() {
         Queue<T> queue = new ArrayDeque<>();
         Collection<T> vertex = getVertices();

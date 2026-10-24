@@ -7,15 +7,29 @@ import java.util.List;
 import java.util.Map;
 import nsu.lab.graph.api.Graph;
 
+/**
+ * Adjacency matrix representation of a graph.
+ *
+ * @param <T> vertex type
+ */
 public class AdjacencyMatrixGraph<T> extends Graph<T> {
     private final Map<T, Integer> elementToInd = new HashMap<>();
     private final List<T> indToElement = new ArrayList<>();
     private boolean[][] adjacencyMatrix;
     private int count = 0;
 
+    /**
+     * Constructs graph with initial matrix capacity.
+     *
+     * @param size initial capacity
+     */
     public AdjacencyMatrixGraph(int size) {
         adjacencyMatrix = new boolean[size][size];
     }
+
+    /**
+     * Default constructor.
+     */
     public AdjacencyMatrixGraph() {
         adjacencyMatrix = new boolean[1][1];
     }

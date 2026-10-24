@@ -8,8 +8,19 @@ import java.util.List;
 import java.util.Map;
 import nsu.lab.graph.api.Graph;
 
+/**
+ * Adjacency list representation of a graph.
+ *
+ * @param <T> vertex type
+ */
 public class AdjacencyListGraph<T> extends Graph<T> {
     Map<T, List<T>> adjacencyList = new HashMap<>();
+
+    /**
+     * Default constructor.
+     */
+    public AdjacencyListGraph() {
+    }
 
     @Override
     public boolean addVertex(T vertex) {
