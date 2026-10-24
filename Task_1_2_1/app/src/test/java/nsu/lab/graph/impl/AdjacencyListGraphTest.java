@@ -34,9 +34,9 @@ class AdjacencyListGraphTest {
 
     @ParameterizedTest
     @CsvSource({
-            "A, B",
-            "B, C",
-            "A, A"
+        "A, B",
+        "B, C",
+        "A, A"
     })
     void testAddAndDelEdge(String from, String to) {
         graph.addVertex(from);

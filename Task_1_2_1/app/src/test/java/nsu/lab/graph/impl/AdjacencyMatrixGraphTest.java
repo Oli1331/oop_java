@@ -44,9 +44,9 @@ class AdjacencyMatrixGraphTest {
 
     @ParameterizedTest
     @CsvSource({
-            "A, B",
-            "B, A",
-            "A, A"
+        "A, B",
+        "B, A",
+        "A, A"
     })
     void testAddAndDelEdge(String from, String to) {
         graph.addVertex(from);
