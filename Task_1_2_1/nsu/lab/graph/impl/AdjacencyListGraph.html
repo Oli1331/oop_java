@@ -91,12 +91,17 @@ loadScripts(document, 'script');</script>
 </div>
 <section class="class-description" id="class-description">
 <dl class="notes">
+<dt>Type Parameters:</dt>
+<dd><code>T</code> - vertex type</dd>
+</dl>
+<dl class="notes">
 <dt>All Implemented Interfaces:</dt>
 <dd><code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;T&gt;</code></dd>
 </dl>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">AdjacencyListGraph&lt;T&gt;</span>
 <span class="extends-implements">extends <a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;T&gt;</span></div>
+<div class="block">Adjacency list representation of a graph.</div>
 </section>
 <section class="summary">
 <ul class="summary-list">
@@ -109,7 +114,9 @@ loadScripts(document, 'script');</script>
 <div class="table-header col-first">Constructor</div>
 <div class="table-header col-last">Description</div>
 <div class="col-constructor-name even-row-color"><code><a href="#%3Cinit%3E()" class="member-name-link">AdjacencyListGraph</a>()</code></div>
-<div class="col-last even-row-color">&nbsp;</div>
+<div class="col-last even-row-color">
+<div class="block">Default constructor.</div>
+</div>
 </div>
 </section>
 </li>
@@ -127,29 +134,44 @@ loadScripts(document, 'script');</script>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addEdge(T,T)" class="member-name-link">addEdge</a><wbr>(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex1,
  <a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex2)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a directed edge between two vertices.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#addVertex(T)" class="member-name-link">addVertex</a><wbr>(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Adds a vertex to the graph.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#delEdge(T,T)" class="member-name-link">delEdge</a><wbr>(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex1,
  <a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex2)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Deletes a directed edge between two vertices.</div>
+</div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>boolean</code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#delVertex(T)" class="member-name-link">delVertex</a><wbr>(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Deletes a vertex from the graph.</div>
+</div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getNeighbors(T)" class="member-name-link">getNeighbors</a><wbr>(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">&nbsp;</div>
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets neighbors of a vertex.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a><wbr>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#getVertices()" class="member-name-link">getVertices</a>()</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Gets all vertices in the graph.</div>
+</div>
 </div>
 </div>
 </div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-nsu.lab.graph.api.Graph">Methods inherited from class&nbsp;nsu.lab.graph.api.<a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a></h3>
-<code><a href="../api/Graph.html#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a></code></div>
+<code><a href="../api/Graph.html#kahnSort()">kahnSort</a>, <a href="../api/Graph.html#readFromFile(java.lang.String,java.util.function.Function)">readFromFile</a>, <a href="../api/Graph.html#toString()">toString</a></code></div>
 <div class="inherited-list">
 <h3 id="methods-inherited-from-class-java.lang.Object">Methods inherited from class&nbsp;java.lang.<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html" title="class or interface in java.lang" class="external-link">Object</a></h3>
-<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#toString()" title="class or interface in java.lang" class="external-link">toString</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
+<code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#clone()" title="class or interface in java.lang" class="external-link">clone</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#equals(java.lang.Object)" title="class or interface in java.lang" class="external-link">equals</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#finalize()" title="class or interface in java.lang" class="external-link">finalize</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#getClass()" title="class or interface in java.lang" class="external-link">getClass</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#hashCode()" title="class or interface in java.lang" class="external-link">hashCode</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notify()" title="class or interface in java.lang" class="external-link">notify</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#notifyAll()" title="class or interface in java.lang" class="external-link">notifyAll</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait()" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long)" title="class or interface in java.lang" class="external-link">wait</a>, <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Object.html#wait(long,int)" title="class or interface in java.lang" class="external-link">wait</a></code></div>
 </section>
 </li>
 </ul>
@@ -165,6 +187,7 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="&lt;init&gt;()">
 <h3>AdjacencyListGraph</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="element-name">AdjacencyListGraph</span>()</div>
+<div class="block">Default constructor.</div>
 </section>
 </li>
 </ul>
@@ -179,11 +202,17 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="addVertex(T)">
 <h3 id="addVertex(java.lang.Object)">addVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addVertex</span><wbr><span class="parameters">(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#addVertex(T)">Igraph</a></code></span></div>
+<div class="block">Adds a vertex to the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Igraph.html#addVertex(T)">addVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Graph.html#addVertex(T)">addVertex</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>vertex</code> - vertex to add</dd>
+<dt>Returns:</dt>
+<dd>true if added, false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -191,11 +220,17 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="delVertex(T)">
 <h3 id="delVertex(java.lang.Object)">delVertex</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">delVertex</span><wbr><span class="parameters">(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#delVertex(T)">Igraph</a></code></span></div>
+<div class="block">Deletes a vertex from the graph.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Igraph.html#delVertex(T)">delVertex</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Graph.html#delVertex(T)">delVertex</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>vertex</code> - vertex to delete</dd>
+<dt>Returns:</dt>
+<dd>true if deleted, false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -204,11 +239,18 @@ loadScripts(document, 'script');</script>
 <h3 id="addEdge(java.lang.Object,java.lang.Object)">addEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">addEdge</span><wbr><span class="parameters">(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex1,
  <a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex2)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#addEdge(T,T)">Igraph</a></code></span></div>
+<div class="block">Adds a directed edge between two vertices.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Igraph.html#addEdge(T,T)">addEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Graph.html#addEdge(T,T)">addEdge</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>vertex1</code> - source vertex</dd>
+<dd><code>vertex2</code> - target vertex</dd>
+<dt>Returns:</dt>
+<dd>true if added, false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -217,11 +259,18 @@ loadScripts(document, 'script');</script>
 <h3 id="delEdge(java.lang.Object,java.lang.Object)">delEdge</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type">boolean</span>&nbsp;<span class="element-name">delEdge</span><wbr><span class="parameters">(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex1,
  <a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex2)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#delEdge(T,T)">Igraph</a></code></span></div>
+<div class="block">Deletes a directed edge between two vertices.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Igraph.html#delEdge(T,T)">delEdge</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Graph.html#delEdge(T,T)">delEdge</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>vertex1</code> - source vertex</dd>
+<dd><code>vertex2</code> - target vertex</dd>
+<dt>Returns:</dt>
+<dd>true if deleted, false otherwise</dd>
 </dl>
 </section>
 </li>
@@ -229,11 +278,33 @@ loadScripts(document, 'script');</script>
 <section class="detail" id="getNeighbors(T)">
 <h3 id="getNeighbors(java.lang.Object)">getNeighbors</h3>
 <div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</span>&nbsp;<span class="element-name">getNeighbors</span><wbr><span class="parameters">(<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&nbsp;vertex)</span></div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#getNeighbors(T)">Igraph</a></code></span></div>
+<div class="block">Gets neighbors of a vertex.</div>
 <dl class="notes">
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Igraph.html#getNeighbors(T)">getNeighbors</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
 <dt>Specified by:</dt>
 <dd><code><a href="../api/Graph.html#getNeighbors(T)">getNeighbors</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Parameters:</dt>
+<dd><code>vertex</code> - source vertex</dd>
+<dt>Returns:</dt>
+<dd>list of neighbors</dd>
+</dl>
+</section>
+</li>
+<li>
+<section class="detail" id="getVertices()">
+<h3>getVertices</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Collection.html" title="class or interface in java.util" class="external-link">Collection</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</span>&nbsp;<span class="element-name">getVertices</span>()</div>
+<div class="block"><span class="description-from-type-label">Description copied from interface:&nbsp;<code><a href="../api/Igraph.html#getVertices()">Igraph</a></code></span></div>
+<div class="block">Gets all vertices in the graph.</div>
+<dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="../api/Igraph.html#getVertices()">getVertices</a></code>&nbsp;in interface&nbsp;<code><a href="../api/Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Specified by:</dt>
+<dd><code><a href="../api/Graph.html#getVertices()">getVertices</a></code>&nbsp;in class&nbsp;<code><a href="../api/Graph.html" title="class in nsu.lab.graph.api">Graph</a>&lt;<a href="AdjacencyListGraph.html" title="type parameter in AdjacencyListGraph">T</a>&gt;</code></dd>
+<dt>Returns:</dt>
+<dd>collection of vertices</dd>
 </dl>
 </section>
 </li>
