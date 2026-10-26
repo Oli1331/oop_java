@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Function;
+import nsu.lab.graph.sort.Isort;
 
 /**
  * Graph interface providing basic operations.
@@ -69,4 +70,7 @@ public interface Igraph<T> {
      * @return collection of vertices
      */
     Collection<T> getVertices();
+
+    List<T> topologicalSort(Isort sortingMethod);
+
 }

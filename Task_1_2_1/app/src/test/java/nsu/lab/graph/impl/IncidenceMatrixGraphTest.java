@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import nsu.lab.graph.sort.KahnSort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -35,9 +36,9 @@ class IncidenceMatrixGraphTest {
 
     @ParameterizedTest
     @CsvSource({
-        "A, B",
-        "B, C",
-        "A, A"
+            "A, B",
+            "B, C",
+            "A, A"
     })
     void testAddAndDelEdge(String from, String to) {
         graph.addVertex(from);
@@ -88,9 +89,9 @@ class IncidenceMatrixGraphTest {
         graph.addEdge("B", "C");
         graph.addEdge("C", "D");
         graph.addEdge("D", "E");
-        assertEquals(List.of("A", "B", "C", "D", "E"), graph.kahnSort());
+        assertEquals(List.of("A", "B", "C", "D", "E"), graph.topologicalSort(new KahnSort()));
 
         graph.addEdge("E", "A");
-        assertThrows(IllegalStateException.class, () -> graph.kahnSort());
+        assertThrows(IllegalStateException.class, () -> graph.topologicalSort(new KahnSort()));
     }
 }

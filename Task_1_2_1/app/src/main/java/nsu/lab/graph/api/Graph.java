@@ -4,14 +4,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Queue;
 import java.util.function.Function;
+import nsu.lab.graph.sort.Isort;
 
 /**
  * Abstract graph class.
@@ -68,55 +64,19 @@ public abstract class Graph<T> implements Igraph<T> {
      *
      * @return sorted list of vertices
      */
-    public List<T> kahnSort() {
-        Queue<T> queue = new ArrayDeque<>();
-        Collection<T> vertex = getVertices();
-        Map<T, Integer> inDegree = new HashMap<>();
-        List<T> result = new ArrayList<>();
-
-        for (T v : vertex) {
-            for (T neighbourV : getNeighbors(v)) {
-                if (!inDegree.containsKey(neighbourV)) {
-                    inDegree.put(neighbourV, 1);
-                } else {
-                    inDegree.replace(neighbourV, inDegree.get(neighbourV) + 1);
-                }
-            }
-        }
-
-        for (T v : vertex) {
-            if (inDegree.get(v) == null || inDegree.get(v) == 0) {
-                queue.add(v);
-            }
-        }
-
-        while (!queue.isEmpty()) {
-            T cleanVertex = queue.remove();
-            result.add(cleanVertex);
-            for (T neighbourV : getNeighbors(cleanVertex)) {
-                int countInEdgeOfNeighbour = inDegree.get(neighbourV);
-                inDegree.replace(neighbourV, countInEdgeOfNeighbour - 1);
-                if (countInEdgeOfNeighbour == 1) {
-                    queue.add(neighbourV);
-                }
-            }
-        }
-
-        if (result.size() != vertex.size()) {
-            throw new IllegalStateException(
-                    "Graph contains a cycle, topological sort is impossible.");
-        }
-        return result;
+    public List<T> topologicalSort(Isort sortingMethod) {
+        return sortingMethod.sort(this);
     }
+
 
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
         for (T v : getVertices()) {
             res.append(v)
-               .append(": ")
-               .append(getNeighbors(v))
-               .append("\n");
+                    .append(": ")
+                    .append(getNeighbors(v))
+                    .append("\n");
         }
         return res.toString();
     }
