@@ -3,6 +3,8 @@ package nsu.lab.graph;
 import java.io.IOException;
 import nsu.lab.graph.api.Graph;
 import nsu.lab.graph.impl.AdjacencyMatrixGraph;
+import nsu.lab.graph.sort.DfsSort;
+import nsu.lab.graph.sort.KahnSort;
 
 /**
  * Main application class.
@@ -15,7 +17,10 @@ public class Main {
      * @param args command line arguments
      */
     public static void main(String[] args) {
+
         if (args.length == 1) {
+            KahnSort sotringMethod1 = new KahnSort();
+            DfsSort sotringMethod2 = new DfsSort();
             Graph<String> graph = new AdjacencyMatrixGraph<>();
             try {
                 graph.readFromFile(args[0], s -> s);
@@ -23,7 +28,7 @@ public class Main {
                 System.out.println("can't open file");
             }
 
-            System.out.println("Gragh:\n" + graph + "\ntopological sort:\n" + graph.kahnSort());
+            System.out.println("Gragh:\n" + graph + "\ntopological sort:\n" + graph.topologicalSort(sotringMethod1));
         }
     }
 }
