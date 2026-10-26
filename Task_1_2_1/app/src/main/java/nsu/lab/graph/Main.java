@@ -12,6 +12,12 @@ import nsu.lab.graph.sort.KahnSort;
 public class Main {
 
     /**
+     * Default constructor.
+     */
+    public Main() {
+    }
+
+    /**
      * Application entry point.
      *
      * @param args command line arguments

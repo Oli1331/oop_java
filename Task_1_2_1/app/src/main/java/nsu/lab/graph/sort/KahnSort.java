@@ -9,7 +9,16 @@ import java.util.Map;
 import java.util.Queue;
 import nsu.lab.graph.api.Graph;
 
+/**
+ * Kahn's algorithm implementation for topological sorting.
+ */
 public class KahnSort implements Isort {
+    /**
+     * Default constructor.
+     */
+    public KahnSort() {
+    }
+
     @Override
     public <T> List<T> sort(Graph<T> graph) {
 
