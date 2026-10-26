@@ -166,16 +166,16 @@ implements <a href="Igraph.html" title="interface in nsu.lab.graph.api">Igraph</
 <div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
 <div class="block">Gets all vertices in the graph.</div>
 </div>
-<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></div>
-<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#kahnSort()" class="member-name-link">kahnSort</a>()</code></div>
-<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
-<div class="block">Performs Kahn's topological sort on the graph.</div>
-</div>
-<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
-<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.lang.String,java.util.function.Function)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;strPath,
+<div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code>void</code></div>
+<div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#readFromFile(java.lang.String,java.util.function.Function)" class="member-name-link">readFromFile</a><wbr>(<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>&nbsp;strPath,
  <a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html" title="class or interface in java.util.function" class="external-link">Function</a>&lt;<a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a>,<wbr><a href="Graph.html" title="type parameter in Graph">T</a>&gt;&nbsp;parser)</code></div>
-<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
 <div class="block">Reads graph from a file.</div>
+</div>
+<div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a><wbr>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></div>
+<div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#topologicalSort(nsu.lab.graph.sort.Isort)" class="member-name-link">topologicalSort</a><wbr>(<a href="../sort/Isort.html" title="interface in nsu.lab.graph.sort">Isort</a>&nbsp;sortingMethod)</code></div>
+<div class="col-last odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4">
+<div class="block">Performs Kahn's topological sort on the graph.</div>
 </div>
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#toString()" class="member-name-link">toString</a>()</code></div>
@@ -330,11 +330,13 @@ implements <a href="Igraph.html" title="interface in nsu.lab.graph.api">Igraph</
 </section>
 </li>
 <li>
-<section class="detail" id="kahnSort()">
-<h3>kahnSort</h3>
-<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</span>&nbsp;<span class="element-name">kahnSort</span>()</div>
+<section class="detail" id="topologicalSort(nsu.lab.graph.sort.Isort)">
+<h3>topologicalSort</h3>
+<div class="member-signature"><span class="modifiers">public</span>&nbsp;<span class="return-type"><a href="https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/List.html" title="class or interface in java.util" class="external-link">List</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</span>&nbsp;<span class="element-name">topologicalSort</span><wbr><span class="parameters">(<a href="../sort/Isort.html" title="interface in nsu.lab.graph.sort">Isort</a>&nbsp;sortingMethod)</span></div>
 <div class="block">Performs Kahn's topological sort on the graph.</div>
 <dl class="notes">
+<dt>Specified by:</dt>
+<dd><code><a href="Igraph.html#topologicalSort(nsu.lab.graph.sort.Isort)">topologicalSort</a></code>&nbsp;in interface&nbsp;<code><a href="Igraph.html" title="interface in nsu.lab.graph.api">Igraph</a>&lt;<a href="Graph.html" title="type parameter in Graph">T</a>&gt;</code></dd>
 <dt>Returns:</dt>
 <dd>sorted list of vertices</dd>
 </dl>
