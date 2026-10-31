@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
+import nsu.lab.graph.sort.DfsSort;
 import nsu.lab.graph.sort.KahnSort;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -94,8 +95,11 @@ class AdjacencyListGraphTest {
         graph.addEdge("C", "D");
         graph.addEdge("D", "E");
         assertEquals(List.of("A", "B", "C", "D", "E"), graph.topologicalSort(new KahnSort()));
+        assertEquals(List.of("A", "B", "C", "D", "E"), graph.topologicalSort(new DfsSort()));
 
         graph.addEdge("E", "A");
         assertThrows(IllegalStateException.class, () -> graph.topologicalSort(new KahnSort()));
+        assertThrows(IllegalStateException.class, () -> graph.topologicalSort(new DfsSort()));
+
     }
 }

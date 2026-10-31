@@ -34,7 +34,7 @@ public class Main {
                 System.out.println("can't open file");
             }
 
-            System.out.println("Gragh:\n" + graph + "\ntopological sort:\n" + graph.topologicalSort(sotringMethod1));
+            System.out.println("Gragh:\n" + graph + "\nkahn topological sort:\n" + graph.topologicalSort(sotringMethod1) + "\ndfs topological sort:\n" + graph.topologicalSort(sotringMethod2));
         }
     }
 }
