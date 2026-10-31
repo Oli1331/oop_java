@@ -17,15 +17,24 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
+/**
+ * Tests for {@link HashTable}.
+ */
 public class HashTableTest {
 
     private HashTable<String, Integer> table;
 
+    /**
+     * Setup test fixture before each test method.
+     */
     @BeforeEach
     public void setUp() {
         table = new HashTable<>();
     }
 
+    /**
+     * Test adding and retrieving elements.
+     */
     @Test
     public void testAddAndGet() {
         assertNull(table.add("One", 1));
@@ -35,6 +44,9 @@ public class HashTableTest {
         assertEquals(2, table.get("Two"));
     }
 
+    /**
+     * Test overwriting value of an existing key.
+     */
     @Test
     public void testAddOverwriteKey() {
         assertNull(table.add("Key", 100));
@@ -42,6 +54,12 @@ public class HashTableTest {
         assertEquals(200, table.get("Key"));
     }
 
+    /**
+     * Parameterized test for add and has methods.
+     *
+     * @param key   test key.
+     * @param value test value.
+     */
     @ParameterizedTest
     @CsvSource({
             "apple, 10",
@@ -54,6 +72,11 @@ public class HashTableTest {
         assertEquals(value, table.get(key));
     }
 
+    /**
+     * Parameterized test for checking non-existing elements.
+     *
+     * @param key test key.
+     */
     @ParameterizedTest
     @ValueSource(strings = {"nonExisting1", "nonExisting2", "unknown"})
     public void testHasAndGetNonExisting(String key) {
@@ -61,6 +84,9 @@ public class HashTableTest {
         assertNull(table.get(key));
     }
 
+    /**
+     * Test removing existing element.
+     */
     @Test
     public void testCutExistingElement() {
         table.add("A", 1);
@@ -72,6 +98,9 @@ public class HashTableTest {
         assertTrue(table.has("B"));
     }
 
+    /**
+     * Test removing non-existing element.
+     */
     @Test
     public void testCutNonExistingElement() {
         table.add("A", 1);
@@ -79,6 +108,9 @@ public class HashTableTest {
         assertTrue(table.has("A"));
     }
 
+    /**
+     * Test setting existing and non-existing elements.
+     */
     @Test
     public void testSetExistingAndNonExisting() {
         table.add("Key1", 10);
@@ -89,6 +121,9 @@ public class HashTableTest {
         assertFalse(table.has("Key2"));
     }
 
+    /**
+     * Test working with null key and null value.
+     */
     @Test
     public void testNullKeyAndValue() {
         table.add(null, 100);
@@ -103,6 +138,9 @@ public class HashTableTest {
         assertFalse(table.has(null));
     }
 
+    /**
+     * Test table resize functionality.
+     */
     @Test
     public void testResize() {
         int count = 50;
@@ -116,6 +154,9 @@ public class HashTableTest {
         }
     }
 
+    /**
+     * Test equals method on equal and non-equal tables.
+     */
     @Test
     public void testEqualsSameAndDifferent() {
         HashTable<String, Integer> table2 = new HashTable<>();
@@ -132,6 +173,9 @@ public class HashTableTest {
         assertNotEquals(table, table2);
     }
 
+    /**
+     * Test iterator implementation.
+     */
     @Test
     public void testIterator() {
         table.add("A", 1);

@@ -3,6 +3,12 @@ package nsu.lab.hashTable.impl;
 import java.util.Iterator;
 import java.util.Objects;
 
+/**
+ * Custom hash table implementation.
+ *
+ * @param <K> type of key.
+ * @param <V> type of value.
+ */
 public class HashTable<K, V> implements Iterable<Node<K, V>> {
 
     private static final int DEFAULT_CAPACITY = 16;
@@ -11,18 +17,33 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
     private Node<K, V>[] table;
     private int size;
 
+    /**
+     * Constructs an empty hash table with default initial capacity.
+     */
     @SuppressWarnings("unchecked")
     public HashTable() {
         table = (Node<K, V>[]) new Node[DEFAULT_CAPACITY];
         size = 0;
     }
 
+    /**
+     * Constructs an empty hash table with specified initial capacity.
+     *
+     * @param size initial capacity.
+     */
     @SuppressWarnings("unchecked")
     public HashTable(int size) {
         table = (Node<K, V>[]) new Node[size];
         this.size = size;
     }
 
+    /**
+     * Adds key-value pair to the table or updates existing key value.
+     *
+     * @param key   element key.
+     * @param value element value.
+     * @return old value associated with key, or null if key was not present.
+     */
     public V add(K key, V value) {
         if (size > LOAD_FACTOR * table.length) {
             resize();
@@ -42,9 +63,14 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
         table[index] = new Node<>(key, value, hashKey, table[index]);
         size++;
         return null;
-
     }
 
+    /**
+     * Removes key-value pair from the table.
+     *
+     * @param key element key to remove.
+     * @return value associated with key, or null if key was not present.
+     */
     public V cut(K key) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
@@ -68,6 +94,12 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
         return null;
     }
 
+    /**
+     * Gets value associated with specified key.
+     *
+     * @param key element key.
+     * @return associated value, or null if not found.
+     */
     public V get(K key) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
@@ -81,6 +113,13 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
         return null;
     }
 
+    /**
+     * Updates value for existing key.
+     *
+     * @param key   element key.
+     * @param value new value.
+     * @return updated value, or null if key does not exist.
+     */
     public V set(K key, V value) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
@@ -95,6 +134,12 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
         return null;
     }
 
+    /**
+     * Checks if key exists in hash table.
+     *
+     * @param key element key.
+     * @return true if key exists, false otherwise.
+     */
     public boolean has(K key) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
@@ -151,7 +196,6 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
             newTable[index] = i;
         }
         table = newTable;
-
     }
 
     @Override
