@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"nsu.lab.hashTable.impl","l":"HashTable"},{"p":"nsu.lab.hashTable","l":"Main"},{"p":"nsu.lab.hashTable.impl","l":"Node"}];updateSearchResults();
