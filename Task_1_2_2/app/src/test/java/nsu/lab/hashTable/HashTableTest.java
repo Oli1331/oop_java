@@ -28,7 +28,7 @@ public class HashTableTest {
      * Setup test fixture before each test method.
      */
     @BeforeEach
-    public void setUp() {
+    public void replaceUp() {
         table = new HashTable<>();
     }
 
@@ -36,9 +36,9 @@ public class HashTableTest {
      * Test adding and retrieving elements.
      */
     @Test
-    public void testAddAndGet() {
-        assertNull(table.add("One", 1));
-        assertNull(table.add("Two", 2));
+    public void testPutAndGet() {
+        assertNull(table.put("One", 1));
+        assertNull(table.put("Two", 2));
 
         assertEquals(1, table.get("One"));
         assertEquals(2, table.get("Two"));
@@ -48,14 +48,14 @@ public class HashTableTest {
      * Test overwriting value of an existing key.
      */
     @Test
-    public void testAddOverwriteKey() {
-        assertNull(table.add("Key", 100));
-        assertEquals(100, table.add("Key", 200));
+    public void testPutOverwriteKey() {
+        assertNull(table.put("Key", 100));
+        assertEquals(100, table.put("Key", 200));
         assertEquals(200, table.get("Key"));
     }
 
     /**
-     * Parameterized test for add and has methods.
+     * Parameterized test for put and containsKey methods.
      *
      * @param key   test key.
      * @param value test value.
@@ -66,9 +66,9 @@ public class HashTableTest {
             "banana, 20",
             "cherry, 30"
     })
-    public void testParameterizedAddAndHas(String key, Integer value) {
-        table.add(key, value);
-        assertTrue(table.has(key));
+    public void testParameterizedPutAndContainsKey(String key, Integer value) {
+        table.put(key, value);
+        assertTrue(table.containsKey(key));
         assertEquals(value, table.get(key));
     }
 
@@ -79,8 +79,8 @@ public class HashTableTest {
      */
     @ParameterizedTest
     @ValueSource(strings = {"nonExisting1", "nonExisting2", "unknown"})
-    public void testHasAndGetNonExisting(String key) {
-        assertFalse(table.has(key));
+    public void testContainsKeyAndGetNonExisting(String key) {
+        assertFalse(table.containsKey(key));
         assertNull(table.get(key));
     }
 
@@ -88,37 +88,37 @@ public class HashTableTest {
      * Test removing existing element.
      */
     @Test
-    public void testCutExistingElement() {
-        table.add("A", 1);
-        table.add("B", 2);
+    public void testRemoveExistingElement() {
+        table.put("A", 1);
+        table.put("B", 2);
 
-        assertEquals(1, table.cut("A"));
-        assertFalse(table.has("A"));
+        assertEquals(1, table.remove("A"));
+        assertFalse(table.containsKey("A"));
         assertNull(table.get("A"));
-        assertTrue(table.has("B"));
+        assertTrue(table.containsKey("B"));
     }
 
     /**
      * Test removing non-existing element.
      */
     @Test
-    public void testCutNonExistingElement() {
-        table.add("A", 1);
-        assertNull(table.cut("B"));
-        assertTrue(table.has("A"));
+    public void testRemoveNonExistingElement() {
+        table.put("A", 1);
+        assertNull(table.remove("B"));
+        assertTrue(table.containsKey("A"));
     }
 
     /**
      * Test setting existing and non-existing elements.
      */
     @Test
-    public void testSetExistingAndNonExisting() {
-        table.add("Key1", 10);
-        assertEquals(20, table.set("Key1", 20));
+    public void testReplaceExistingAndNonExisting() {
+        table.put("Key1", 10);
+        assertEquals(20, table.replace("Key1", 20));
         assertEquals(20, table.get("Key1"));
 
-        assertNull(table.set("Key2", 30));
-        assertFalse(table.has("Key2"));
+        assertNull(table.replace("Key2", 30));
+        assertFalse(table.containsKey("Key2"));
     }
 
     /**
@@ -126,16 +126,16 @@ public class HashTableTest {
      */
     @Test
     public void testNullKeyAndValue() {
-        table.add(null, 100);
-        assertTrue(table.has(null));
+        table.put(null, 100);
+        assertTrue(table.containsKey(null));
         assertEquals(100, table.get(null));
 
-        table.add("NullValue", null);
-        assertTrue(table.has("NullValue"));
+        table.put("NullValue", null);
+        assertTrue(table.containsKey("NullValue"));
         assertNull(table.get("NullValue"));
 
-        assertEquals(100, table.cut(null));
-        assertFalse(table.has(null));
+        assertEquals(100, table.remove(null));
+        assertFalse(table.containsKey(null));
     }
 
     /**
@@ -145,11 +145,11 @@ public class HashTableTest {
     public void testResize() {
         int count = 50;
         for (int i = 0; i < count; i++) {
-            table.add("Key" + i, i);
+            table.put("Key" + i, i);
         }
 
         for (int i = 0; i < count; i++) {
-            assertTrue(table.has("Key" + i));
+            assertTrue(table.containsKey("Key" + i));
             assertEquals(i, table.get("Key" + i));
         }
     }
@@ -161,15 +161,15 @@ public class HashTableTest {
     public void testEqualsSameAndDifferent() {
         HashTable<String, Integer> table2 = new HashTable<>();
 
-        table.add("A", 1);
-        table.add("B", 2);
+        table.put("A", 1);
+        table.put("B", 2);
 
-        table2.add("A", 1);
-        table2.add("B", 2);
+        table2.put("A", 1);
+        table2.put("B", 2);
 
         assertEquals(table, table2);
 
-        table2.add("C", 3);
+        table2.put("C", 3);
         assertNotEquals(table, table2);
     }
 
@@ -178,9 +178,9 @@ public class HashTableTest {
      */
     @Test
     public void testIterator() {
-        table.add("A", 1);
-        table.add("B", 2);
-        table.add("C", 3);
+        table.put("A", 1);
+        table.put("B", 2);
+        table.put("C", 3);
 
         List<String> keys = new ArrayList<>();
         List<Integer> values = new ArrayList<>();

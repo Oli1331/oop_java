@@ -14,9 +14,9 @@ public class Main {
      */
     public static void main(String[] args) {
         HashTable<String, String> hashTable = new HashTable<>();
-        hashTable.add("Java", "anoonfieaorigjgnvoiroincogijjouo");
+        hashTable.put("Java", "anoonfieaorigjgnvoiroincogijjouo");
         System.out.println(hashTable);
-        hashTable.add("Python", "sgonjeroncv");
+        hashTable.put("Python", "sgonjeroncv");
         System.out.println(hashTable);
     }
 }

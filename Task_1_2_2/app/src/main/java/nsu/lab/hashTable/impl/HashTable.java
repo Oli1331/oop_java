@@ -44,7 +44,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
      * @param value element value.
      * @return old value associated with key, or null if key was not present.
      */
-    public V add(K key, V value) {
+    public V put(K key, V value) {
         if (size > LOAD_FACTOR * table.length) {
             resize();
         }
@@ -71,7 +71,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
      * @param key element key to remove.
      * @return value associated with key, or null if key was not present.
      */
-    public V cut(K key) {
+    public V remove(K key) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
         Node<K, V> current = table[index];
@@ -120,7 +120,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
      * @param value new value.
      * @return updated value, or null if key does not exist.
      */
-    public V set(K key, V value) {
+    public V replace(K key, V value) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
         Node<K, V> current = table[index];
@@ -140,7 +140,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
      * @param key element key.
      * @return true if key exists, false otherwise.
      */
-    public boolean has(K key) {
+    public boolean containsKey(K key) {
         int hashKey = key == null ? 0 : key.hashCode();
         int index = (hashKey & 0x7FFFFFFF) % table.length;
         Node<K, V> current = table[index];
@@ -177,7 +177,7 @@ public class HashTable<K, V> implements Iterable<Node<K, V>> {
             return false;
         }
         for (var i : this) {
-            if (!transformedObj.has(i.key)) {
+            if (!transformedObj.containsKey(i.key)) {
                 return false;
             }
             if (!Objects.equals(transformedObj.get(i.key), i.value)) {
