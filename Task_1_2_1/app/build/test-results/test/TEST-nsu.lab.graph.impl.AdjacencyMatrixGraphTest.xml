@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-31T06:49:43.178Z" hostname="LAPTOP_WNDW_OLI" time="0.028">
+  <properties/>
+  <testcase name="testCapacityExpansion()" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="testGetNeighborsForNonExistentVertex()" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="[1] &quot;V1&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="[2] &quot;V2&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="[3] &quot;V3&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.0"/>
+  <testcase name="[4] &quot;V4&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="[1] &quot;A&quot;, &quot;B&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.002"/>
+  <testcase name="[2] &quot;B&quot;, &quot;A&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="[3] &quot;A&quot;, &quot;A&quot;" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testDelMiddleVertexKeepsOtherEdgesIntact()" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.001"/>
+  <testcase name="testKahnSort()" classname="nsu.lab.graph.impl.AdjacencyMatrixGraphTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

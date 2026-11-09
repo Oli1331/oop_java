@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>KahnSort.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">nsu.lab.graph.sort</a> &gt; <span class="el_source">KahnSort.java</span></div><h1>KahnSort.java</h1><pre class="source lang-java linenums">package nsu.lab.graph.sort;
+
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import nsu.lab.graph.api.Graph;
+
+/**
+ * Kahn's algorithm implementation for topological sorting.
+ */
+public class KahnSort implements Isort {
+    /**
+     * Default constructor.
+     */
+<span class="fc" id="L19">    public KahnSort() {</span>
+<span class="fc" id="L20">    }</span>
+
+    @Override
+    public &lt;T&gt; List&lt;T&gt; sort(Graph&lt;T&gt; graph) {
+
+<span class="fc" id="L25">        Queue&lt;T&gt; queue = new ArrayDeque&lt;&gt;();</span>
+<span class="fc" id="L26">        Collection&lt;T&gt; vertex = graph.getVertices();</span>
+<span class="fc" id="L27">        Map&lt;T, Integer&gt; inDegree = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L28">        List&lt;T&gt; result = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L30" title="All 2 branches covered.">        for (T v : vertex) {</span>
+<span class="fc bfc" id="L31" title="All 2 branches covered.">            for (T neighbourV : graph.getNeighbors(v)) {</span>
+<span class="pc bpc" id="L32" title="1 of 2 branches missed.">                if (!inDegree.containsKey(neighbourV)) {</span>
+<span class="fc" id="L33">                    inDegree.put(neighbourV, 1);</span>
+                } else {
+<span class="nc" id="L35">                    inDegree.replace(neighbourV, inDegree.get(neighbourV) + 1);</span>
+                }
+<span class="fc" id="L37">            }</span>
+<span class="fc" id="L38">        }</span>
+
+<span class="fc bfc" id="L40" title="All 2 branches covered.">        for (T v : vertex) {</span>
+<span class="pc bpc" id="L41" title="1 of 4 branches missed.">            if (inDegree.get(v) == null || inDegree.get(v) == 0) {</span>
+<span class="fc" id="L42">                queue.add(v);</span>
+            }
+<span class="fc" id="L44">        }</span>
+
+<span class="fc bfc" id="L46" title="All 2 branches covered.">        while (!queue.isEmpty()) {</span>
+<span class="fc" id="L47">            T cleanVertex = queue.remove();</span>
+<span class="fc" id="L48">            result.add(cleanVertex);</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">            for (T neighbourV : graph.getNeighbors(cleanVertex)) {</span>
+<span class="fc" id="L50">                int countInEdgeOfNeighbour = inDegree.get(neighbourV);</span>
+<span class="fc" id="L51">                inDegree.replace(neighbourV, countInEdgeOfNeighbour - 1);</span>
+<span class="pc bpc" id="L52" title="1 of 2 branches missed.">                if (countInEdgeOfNeighbour == 1) {</span>
+<span class="fc" id="L53">                    queue.add(neighbourV);</span>
+                }
+<span class="fc" id="L55">            }</span>
+<span class="fc" id="L56">        }</span>
+<span class="fc bfc" id="L57" title="All 2 branches covered.">        if (result.size() != vertex.size()) {</span>
+<span class="fc" id="L58">            throw new IllegalStateException(</span>
+                    &quot;Graph contains a cycle, topological sort is impossible.&quot;);
+        }
+<span class="fc" id="L61">        return result;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

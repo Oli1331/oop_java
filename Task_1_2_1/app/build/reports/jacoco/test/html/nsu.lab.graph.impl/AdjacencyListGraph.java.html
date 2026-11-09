@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AdjacencyListGraph.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">nsu.lab.graph.impl</a> &gt; <span class="el_source">AdjacencyListGraph.java</span></div><h1>AdjacencyListGraph.java</h1><pre class="source lang-java linenums">package nsu.lab.graph.impl;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import nsu.lab.graph.api.Graph;
+
+/**
+ * Adjacency list representation of a graph.
+ *
+ * @param &lt;T&gt; vertex type
+ */
+public class AdjacencyListGraph&lt;T&gt; extends Graph&lt;T&gt; {
+<span class="fc" id="L17">    Map&lt;T, List&lt;T&gt;&gt; adjacencyList = new HashMap&lt;&gt;();</span>
+
+    /**
+     * Default constructor.
+     */
+<span class="fc" id="L22">    public AdjacencyListGraph() {</span>
+<span class="fc" id="L23">    }</span>
+
+    @Override
+    public boolean addVertex(T vertex) {
+<span class="fc bfc" id="L27" title="All 2 branches covered.">        if (adjacencyList.containsKey(vertex)) {</span>
+<span class="fc" id="L28">            return false;</span>
+        }
+<span class="fc" id="L30">        adjacencyList.put(vertex, new ArrayList&lt;&gt;());</span>
+
+<span class="fc" id="L32">        return true;</span>
+    }
+
+    @Override
+    public boolean delVertex(T vertex) {
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (!adjacencyList.containsKey(vertex)) {</span>
+<span class="fc" id="L38">            return false;</span>
+        }
+<span class="fc" id="L40">        adjacencyList.remove(vertex);</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">        for (var el : adjacencyList.values()) {</span>
+<span class="fc" id="L42">            el.remove(vertex);</span>
+<span class="fc" id="L43">        }</span>
+<span class="fc" id="L44">        return true;</span>
+    }
+
+    @Override
+    public boolean addEdge(T vertex1, T vertex2) {
+<span class="fc" id="L49">        List&lt;T&gt; currentList = adjacencyList.get(vertex1);</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        if (currentList == null</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">                || !adjacencyList.containsKey(vertex2)</span>
+<span class="fc bfc" id="L52" title="All 2 branches covered.">                || currentList.contains(vertex2)) {</span>
+<span class="fc" id="L53">            return false;</span>
+        }
+<span class="fc" id="L55">        currentList.add(vertex2);</span>
+<span class="fc" id="L56">        return true;</span>
+    }
+
+    @Override
+    public boolean delEdge(T vertex1, T vertex2) {
+<span class="fc" id="L61">        List&lt;T&gt; currentList = adjacencyList.get(vertex1);</span>
+<span class="pc bpc" id="L62" title="1 of 2 branches missed.">        if (currentList == null) {</span>
+<span class="nc" id="L63">            return false;</span>
+        }
+<span class="fc" id="L65">        return currentList.remove(vertex2);</span>
+    }
+
+    @Override
+    public List&lt;T&gt; getNeighbors(T vertex) {
+<span class="fc" id="L70">        List&lt;T&gt; neighbors = adjacencyList.get(vertex);</span>
+<span class="fc bfc" id="L71" title="All 2 branches covered.">        if (neighbors == null) {</span>
+<span class="fc" id="L72">            return Collections.emptyList();</span>
+        }
+<span class="fc" id="L74">        return neighbors;</span>
+    }
+
+    @Override
+    public Collection&lt;T&gt; getVertices() {
+<span class="fc" id="L79">        return adjacencyList.keySet();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nsu.lab.graph.impl.AdjacencyListGraphTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-31T06:49:42.980Z" hostname="LAPTOP_WNDW_OLI" time="0.196">
+  <properties/>
+  <testcase name="testAddEdgeWithMissingVertices()" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.043"/>
+  <testcase name="[1] &quot;A&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.007"/>
+  <testcase name="[2] &quot;B&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="[3] &quot;C&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="[4] &quot;D&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="[1] &quot;A&quot;, &quot;B&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.002"/>
+  <testcase name="[2] &quot;B&quot;, &quot;C&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="[3] &quot;A&quot;, &quot;A&quot;" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="testDelVertexRemovesIncomingEdges()" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.001"/>
+  <testcase name="testGetNeighbors()" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.003"/>
+  <testcase name="testKahnSort()" classname="nsu.lab.graph.impl.AdjacencyListGraphTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
