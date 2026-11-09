@@ -12,7 +12,7 @@ public class ConsoleIo {
         scan = new Scanner(System.in);
     }
 
-    /** Prints welcome message and deck prompt. */
+    /** Prints welcome message and deck prompt */
     public void messageGameStart() {
         System.out.print("Welcome to Blackjack! \n How many decks will be in the game? ");
     }
