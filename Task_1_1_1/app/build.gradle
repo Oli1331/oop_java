@@ -1,0 +1,58 @@
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+    id 'jacoco'
+    id 'java'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit test framework.
+    testImplementation libs.junit
+
+    // This dependency is used by the application.
+    implementation libs.guava
+
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
+
+    // ДОБАВЛЕНО: Движок для запуска тестов JUnit 5
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+// Apply a specific Java toolchain to ease working on different environments.
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+application {
+    // Define the main class for the application.
+    mainClass = 'func.Main'
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = true
+        // Перенаправляем XML-отчет в корневую папку build
+        xml.outputLocation = file("${project.rootDir}/build/reports/jacoco/test/jacocoTestReport.xml")
+        html.required = true
+    }
+}
+// Перенаправляем Javadoc 
+tasks.named('javadoc') {
+    destinationDir = file("${project.rootDir}/build/docs/javadoc")
+}
+
+test {
+    // Указываем Gradle использовать платформу JUnit 5
+    useJUnitPlatform()
+}
+
+tasks.named('run', JavaExec) {
+    standardInput = System.in
+}
