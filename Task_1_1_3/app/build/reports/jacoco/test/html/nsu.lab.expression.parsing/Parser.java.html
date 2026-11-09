@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">nsu.lab.expression.parsing</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package nsu.lab.expression.parsing;
+
+import java.util.ArrayList;
+import java.util.List;
+import nsu.lab.expression.entity.Add;
+import nsu.lab.expression.entity.Div;
+import nsu.lab.expression.entity.Expression;
+import nsu.lab.expression.entity.Mul;
+import nsu.lab.expression.entity.Number;
+import nsu.lab.expression.entity.Sub;
+import nsu.lab.expression.entity.Variable;
+
+/**
+ * Recursive descent parser that builds an expression tree from left string.
+ */
+public class Parser {
+
+    private Parser() {
+    }
+
+    /**
+     * Parses the given string into an expression.
+     *
+     * @param str the expression text
+     * @return the parsed expression
+     */
+    public static Expression pars(String str) {
+<span class="fc" id="L28">        List&lt;Token&gt; tokens = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L29">        getToken(tokens, str);</span>
+<span class="fc" id="L30">        Counter numToken = new Counter(0);</span>
+<span class="fc" id="L31">        return simpleRecursivePars(tokens, numToken);</span>
+    }
+
+    private static Expression simpleRecursivePars(List&lt;Token&gt; tokens, Counter numToken) {
+<span class="fc bfc" id="L35" title="All 2 branches covered.">        if (tokens.get(numToken.getNum()).type() == TokenType.LBRACKET) {</span>
+<span class="fc" id="L36">            numToken.inc();</span>
+<span class="fc" id="L37">            Expression left = simpleRecursivePars(tokens, numToken);</span>
+
+<span class="fc" id="L39">            numToken.inc();</span>
+<span class="fc bfc" id="L40" title="All 2 branches covered.">            if (tokens.get(numToken.getNum()).type() == TokenType.RBRACKET) {</span>
+<span class="fc" id="L41">                return left;</span>
+            }
+<span class="fc" id="L43">            Token operator = tokens.get(numToken.getNum());</span>
+
+<span class="fc" id="L45">            numToken.inc();</span>
+<span class="fc" id="L46">            Expression right = simpleRecursivePars(tokens, numToken);</span>
+
+<span class="fc" id="L48">            numToken.inc();</span>
+<span class="pc bpc" id="L49" title="1 of 2 branches missed.">            if (tokens.get(numToken.getNum()).type() != TokenType.RBRACKET) {</span>
+<span class="nc" id="L50">                throw new IllegalArgumentException(&quot;Closing parenthesis expected&quot;);</span>
+            }
+<span class="pc bpc" id="L52" title="1 of 5 branches missed.">            switch (operator.type()) {</span>
+                case PLUS -&gt; {
+<span class="fc" id="L54">                    return new Add(left, right);</span>
+                }
+                case MINUS -&gt; {
+<span class="fc" id="L57">                    return new Sub(left, right);</span>
+                }
+                case MULTIPLY -&gt; {
+<span class="fc" id="L60">                    return new Mul(left, right);</span>
+                }
+                case DIV -&gt; {
+<span class="fc" id="L63">                    return new Div(left, right);</span>
+                }
+<span class="nc" id="L65">                default -&gt; throw new IllegalArgumentException(</span>
+                        &quot;The operator was expected, but was met: &quot; + operator);
+            }
+        }
+<span class="fc bfc" id="L69" title="All 2 branches covered.">        if (tokens.get(numToken.getNum()).type() == TokenType.VARIABLE) {</span>
+<span class="fc" id="L70">            return new Variable(tokens.get(numToken.getNum()).text());</span>
+        }
+<span class="fc bfc" id="L72" title="All 2 branches covered.">        if (tokens.get(numToken.getNum()).type() == TokenType.NUMBER) {</span>
+<span class="fc" id="L73">            return new Number(Integer.parseInt(tokens.get(numToken.getNum()).text()));</span>
+        }
+<span class="pc bpc" id="L75" title="1 of 2 branches missed.">        if (tokens.get(numToken.getNum()).type() == TokenType.MINUS) {</span>
+<span class="fc" id="L76">            numToken.inc();</span>
+<span class="pc bpc" id="L77" title="1 of 2 branches missed.">            if (tokens.get(numToken.getNum()).type() == TokenType.NUMBER) {</span>
+<span class="fc" id="L78">                return new Number(-1 * Integer.parseInt(tokens.get(numToken.getNum()).text()));</span>
+            }
+        }
+<span class="nc" id="L81">        throw new IllegalArgumentException(&quot;String format error: &quot; + tokens.get(numToken.getNum()));</span>
+    }
+
+    private static void getToken(List&lt;Token&gt; tokens, String str) {
+<span class="fc" id="L85">        int possition = 0;</span>
+<span class="fc bfc" id="L86" title="All 2 branches covered.">        while (possition &lt; str.length()) {</span>
+<span class="fc" id="L87">            char symbol = str.charAt(possition);</span>
+<span class="fc bfc" id="L88" title="All 8 branches covered.">            switch (symbol) {</span>
+<span class="fc" id="L89">                case ' ' -&gt; possition++;</span>
+                case '(' -&gt; {
+<span class="fc" id="L91">                    tokens.add(new Token(TokenType.LBRACKET, &quot;(&quot;));</span>
+<span class="fc" id="L92">                    possition++;</span>
+<span class="fc" id="L93">                }</span>
+                case ')' -&gt; {
+<span class="fc" id="L95">                    tokens.add(new Token(TokenType.RBRACKET, &quot;)&quot;));</span>
+<span class="fc" id="L96">                    possition++;</span>
+<span class="fc" id="L97">                }</span>
+                case '+' -&gt; {
+<span class="fc" id="L99">                    tokens.add(new Token(TokenType.PLUS, &quot;+&quot;));</span>
+<span class="fc" id="L100">                    possition++;</span>
+<span class="fc" id="L101">                }</span>
+                case '-' -&gt; {
+<span class="fc" id="L103">                    tokens.add(new Token(TokenType.MINUS, &quot;-&quot;));</span>
+<span class="fc" id="L104">                    possition++;</span>
+<span class="fc" id="L105">                }</span>
+                case '*' -&gt; {
+<span class="fc" id="L107">                    tokens.add(new Token(TokenType.MULTIPLY, &quot;*&quot;));</span>
+<span class="fc" id="L108">                    possition++;</span>
+<span class="fc" id="L109">                }</span>
+                case '/' -&gt; {
+<span class="fc" id="L111">                    tokens.add(new Token(TokenType.DIV, &quot;/&quot;));</span>
+<span class="fc" id="L112">                    possition++;</span>
+<span class="fc" id="L113">                }</span>
+                default -&gt; {
+<span class="fc bfc" id="L115" title="All 2 branches covered.">                    if (Character.isDigit(symbol)) {</span>
+<span class="fc" id="L116">                        int from = possition;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">                        while (possition &lt; str.length() &amp;&amp;</span>
+<span class="fc bfc" id="L118" title="All 2 branches covered.">                                Character.isDigit(str.charAt(possition))) {</span>
+<span class="fc" id="L119">                            possition++;</span>
+                        }
+<span class="fc" id="L121">                        tokens.add(new Token(TokenType.NUMBER, str.substring(from, possition)));</span>
+<span class="pc bpc" id="L122" title="1 of 2 branches missed.">                    } else if (Character.isLetter(symbol)) {</span>
+<span class="fc" id="L123">                        int from = possition;</span>
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">                        while (possition &lt; str.length() &amp;&amp;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">                                Character.isLetter(str.charAt(possition))) {</span>
+<span class="fc" id="L126">                            possition++;</span>
+                        }
+<span class="fc" id="L128">                        tokens.add(new Token(TokenType.VARIABLE, str.substring(from, possition)));</span>
+<span class="fc" id="L129">                    } else {</span>
+<span class="nc" id="L130">                        throw new IllegalArgumentException(&quot;Unknown character: &quot; + symbol);</span>
+                    }
+                }
+            }
+<span class="fc" id="L134">        }</span>
+<span class="fc" id="L135">        tokens.add(new Token(TokenType.EOF, &quot;\0&quot;));</span>
+<span class="fc" id="L136">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

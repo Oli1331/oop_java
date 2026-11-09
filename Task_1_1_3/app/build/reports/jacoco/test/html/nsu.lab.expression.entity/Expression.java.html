@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Expression.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">nsu.lab.expression.entity</a> &gt; <span class="el_source">Expression.java</span></div><h1>Expression.java</h1><pre class="source lang-java linenums">package nsu.lab.expression.entity;
+
+/**
+ * Base class for an expression tree node.
+ */
+public abstract class Expression {
+
+    /**
+     * Creates an expression node.
+     */
+<span class="fc" id="L11">    protected Expression() {</span>
+<span class="fc" id="L12">    }</span>
+
+    /**
+     * Evaluates the expression.
+     *
+     * @param var variable values, for example {@code &quot;x=2;y=3&quot;}
+     * @return the evaluated value
+     */
+    public abstract int eval(String var);
+
+    /**
+     * Builds the derivative of the expression.
+     *
+     * @param var the variable to differentiate by
+     * @return the derivative expression
+     */
+    public abstract Expression derivative(String var);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.14.202510111229</span></div></body></html>

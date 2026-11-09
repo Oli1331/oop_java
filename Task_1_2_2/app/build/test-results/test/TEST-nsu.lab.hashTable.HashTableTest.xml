@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nsu.lab.hashTable.HashTableTest" tests="15" skipped="0" failures="0" errors="0" timestamp="2026-11-01T14:09:05.218Z" hostname="LAPTOP_WNDW_OLI" time="0.405">
+  <properties/>
+  <testcase name="testReplaceExistingAndNonExisting()" classname="nsu.lab.hashTable.HashTableTest" time="0.064"/>
+  <testcase name="testNullKeyAndValue()" classname="nsu.lab.hashTable.HashTableTest" time="0.003"/>
+  <testcase name="testRemoveExistingElement()" classname="nsu.lab.hashTable.HashTableTest" time="0.003"/>
+  <testcase name="testPutOverwriteKey()" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="[1] &quot;apple&quot;, &quot;10&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.053"/>
+  <testcase name="[2] &quot;banana&quot;, &quot;20&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="[3] &quot;cherry&quot;, &quot;30&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="testPutAndGet()" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="[1] &quot;nonExisting1&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="[2] &quot;nonExisting2&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="[3] &quot;unknown&quot;" classname="nsu.lab.hashTable.HashTableTest" time="0.001"/>
+  <testcase name="testEqualsSameAndDifferent()" classname="nsu.lab.hashTable.HashTableTest" time="0.005"/>
+  <testcase name="testResize()" classname="nsu.lab.hashTable.HashTableTest" time="0.003"/>
+  <testcase name="testRemoveNonExistingElement()" classname="nsu.lab.hashTable.HashTableTest" time="0.002"/>
+  <testcase name="testIterator()" classname="nsu.lab.hashTable.HashTableTest" time="0.004"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

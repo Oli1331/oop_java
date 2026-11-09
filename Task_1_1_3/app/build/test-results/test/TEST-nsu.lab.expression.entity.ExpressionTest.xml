@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="nsu.lab.expression.entity.ExpressionTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2026-10-11T16:27:01.797Z" hostname="LAPTOP_WNDW_OLI" time="0.345">
+  <properties/>
+  <testcase name="parseTest()" classname="nsu.lab.expression.entity.ExpressionTest" time="0.053"/>
+  <testcase name="evalTest()" classname="nsu.lab.expression.entity.ExpressionTest" time="0.023"/>
+  <testcase name="Test eval1: experssion &quot;(x+y)&quot; with args &quot;x=1;y=2&quot; must be &quot;3&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.048"/>
+  <testcase name="Test eval2: experssion &quot;(x-y)&quot; with args &quot;x=1;y=2&quot; must be &quot;-1&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.001"/>
+  <testcase name="Test eval3: experssion &quot;(x*y)&quot; with args &quot;x=1;y=2&quot; must be &quot;2&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.003"/>
+  <testcase name="Test eval4: experssion &quot;(y/x)&quot; with args &quot;x=1;y=2&quot; must be &quot;2&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.003"/>
+  <testcase name="Test eval5: experssion &quot;(17*3)&quot; with args &quot;&quot; must be &quot;51&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.001"/>
+  <testcase name="Test derivative1: experssion &quot;(x+y)&quot; with args &quot;x&quot; must be &quot;(1+0)&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.003"/>
+  <testcase name="Test derivative2: experssion &quot;(x-y)&quot; with args &quot;y&quot; must be &quot;(0-1)&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.003"/>
+  <testcase name="Test derivative3: experssion &quot;(x*y)&quot; with args &quot;x&quot; must be &quot;((1*y)+(x*0))&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.002"/>
+  <testcase name="Test derivative4: experssion &quot;(x/y)&quot; with args &quot;x&quot; must be &quot;(((1*y)-(x*0))/(y*y))&quot;" classname="nsu.lab.expression.entity.ExpressionTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

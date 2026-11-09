@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>HashTable.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">app</a> &gt; <a href="index.source.html" class="el_package">nsu.lab.hashTable.impl</a> &gt; <span class="el_source">HashTable.java</span></div><h1>HashTable.java</h1><pre class="source lang-java linenums">package nsu.lab.hashTable.impl;
+
+import java.util.Iterator;
+import java.util.Objects;
+
+/**
+ * Custom hash table implementation.
+ *
+ * @param &lt;K&gt; type of key.
+ * @param &lt;V&gt; type of value.
+ */
+public class HashTable&lt;K, V&gt; implements Iterable&lt;Node&lt;K, V&gt;&gt; {
+
+    private static final int DEFAULT_CAPACITY = 16;
+    private static final float LOAD_FACTOR = 0.75f;
+
+    private Node&lt;K, V&gt;[] table;
+    private int size;
+
+    /**
+     * Constructs an empty hash table with default initial capacity.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+<span class="fc" id="L24">    public HashTable() {</span>
+<span class="fc" id="L25">        table = (Node&lt;K, V&gt;[]) new Node[DEFAULT_CAPACITY];</span>
+<span class="fc" id="L26">        size = 0;</span>
+<span class="fc" id="L27">    }</span>
+
+    /**
+     * Constructs an empty hash table with specified initial capacity.
+     *
+     * @param size initial capacity.
+     */
+    @SuppressWarnings(&quot;unchecked&quot;)
+<span class="nc" id="L35">    public HashTable(int size) {</span>
+<span class="nc" id="L36">        table = (Node&lt;K, V&gt;[]) new Node[size];</span>
+<span class="nc" id="L37">        this.size = size;</span>
+<span class="nc" id="L38">    }</span>
+
+    /**
+     * Adds key-value pair to the table or updates existing key value.
+     *
+     * @param key   element key.
+     * @param value element value.
+     * @return old value associated with key, or null if key was not present.
+     */
+    public V put(K key, V value) {
+<span class="fc bfc" id="L48" title="All 2 branches covered.">        if (size &gt; LOAD_FACTOR * table.length) {</span>
+<span class="fc" id="L49">            resize();</span>
+        }
+<span class="fc bfc" id="L51" title="All 2 branches covered.">        int hashKey = key == null ? 0 : key.hashCode();</span>
+<span class="fc" id="L52">        int index = (hashKey &amp; 0x7FFFFFFF) % table.length;</span>
+<span class="fc" id="L53">        Node&lt;K, V&gt; current = table[index];</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        while (current != null) {</span>
+<span class="pc bpc" id="L55" title="1 of 4 branches missed.">            if (current.hash == hashKey &amp;&amp; Objects.equals(current.key, key)) {</span>
+<span class="fc" id="L56">                V oldValue = current.value;</span>
+<span class="fc" id="L57">                current.value = value;</span>
+<span class="fc" id="L58">                return oldValue;</span>
+            }
+<span class="fc" id="L60">            current = current.next;</span>
+        }
+
+<span class="fc" id="L63">        table[index] = new Node&lt;&gt;(key, value, hashKey, table[index]);</span>
+<span class="fc" id="L64">        size++;</span>
+<span class="fc" id="L65">        return null;</span>
+    }
+
+    /**
+     * Removes key-value pair from the table.
+     *
+     * @param key element key to remove.
+     * @return value associated with key, or null if key was not present.
+     */
+    public V remove(K key) {
+<span class="fc bfc" id="L75" title="All 2 branches covered.">        int hashKey = key == null ? 0 : key.hashCode();</span>
+<span class="fc" id="L76">        int index = (hashKey &amp; 0x7FFFFFFF) % table.length;</span>
+<span class="fc" id="L77">        Node&lt;K, V&gt; current = table[index];</span>
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (current == null) {</span>
+<span class="fc" id="L79">            return null;</span>
+        }
+<span class="pc bpc" id="L81" title="1 of 2 branches missed.">        if (Objects.equals(current.key, key)) {</span>
+<span class="fc" id="L82">            table[index] = current.next;</span>
+<span class="fc" id="L83">            return current.value;</span>
+        }
+<span class="nc" id="L85">        Node&lt;K, V&gt; beforeCurrent = current;</span>
+<span class="nc" id="L86">        current = current.next;</span>
+<span class="nc bnc" id="L87" title="All 2 branches missed.">        while (current != null) {</span>
+<span class="nc bnc" id="L88" title="All 4 branches missed.">            if (current.hash == hashKey &amp;&amp; Objects.equals(current.key, key)) {</span>
+<span class="nc" id="L89">                beforeCurrent.next = current.next;</span>
+<span class="nc" id="L90">                return current.value;</span>
+            }
+<span class="nc" id="L92">            current = current.next;</span>
+        }
+<span class="nc" id="L94">        return null;</span>
+    }
+
+    /**
+     * Gets value associated with specified key.
+     *
+     * @param key element key.
+     * @return associated value, or null if not found.
+     */
+    public V get(K key) {
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        int hashKey = key == null ? 0 : key.hashCode();</span>
+<span class="fc" id="L105">        int index = (hashKey &amp; 0x7FFFFFFF) % table.length;</span>
+<span class="fc" id="L106">        Node&lt;K, V&gt; current = table[index];</span>
+<span class="fc bfc" id="L107" title="All 2 branches covered.">        while (current != null) {</span>
+<span class="pc bpc" id="L108" title="1 of 4 branches missed.">            if (current.hash == hashKey &amp;&amp; Objects.equals(current.key, key)) {</span>
+<span class="fc" id="L109">                return current.value;</span>
+            }
+<span class="fc" id="L111">            current = current.next;</span>
+        }
+<span class="fc" id="L113">        return null;</span>
+    }
+
+    /**
+     * Updates value for existing key.
+     *
+     * @param key   element key.
+     * @param value new value.
+     * @return updated value, or null if key does not exist.
+     */
+    public V replace(K key, V value) {
+<span class="pc bpc" id="L124" title="1 of 2 branches missed.">        int hashKey = key == null ? 0 : key.hashCode();</span>
+<span class="fc" id="L125">        int index = (hashKey &amp; 0x7FFFFFFF) % table.length;</span>
+<span class="fc" id="L126">        Node&lt;K, V&gt; current = table[index];</span>
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        while (current != null) {</span>
+<span class="pc bpc" id="L128" title="2 of 4 branches missed.">            if (current.hash == hashKey &amp;&amp; Objects.equals(current.key, key)) {</span>
+<span class="fc" id="L129">                current.value = value;</span>
+<span class="fc" id="L130">                return current.value;</span>
+            }
+<span class="nc" id="L132">            current = current.next;</span>
+        }
+<span class="fc" id="L134">        return null;</span>
+    }
+
+    /**
+     * Checks if key exists in hash table.
+     *
+     * @param key element key.
+     * @return true if key exists, false otherwise.
+     */
+    public boolean containsKey(K key) {
+<span class="fc bfc" id="L144" title="All 2 branches covered.">        int hashKey = key == null ? 0 : key.hashCode();</span>
+<span class="fc" id="L145">        int index = (hashKey &amp; 0x7FFFFFFF) % table.length;</span>
+<span class="fc" id="L146">        Node&lt;K, V&gt; current = table[index];</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">        while (current != null) {</span>
+<span class="pc bpc" id="L148" title="1 of 4 branches missed.">            if (current.hash == hashKey &amp;&amp; Objects.equals(current.key, key)) {</span>
+<span class="fc" id="L149">                return true;</span>
+            }
+<span class="fc" id="L151">            current = current.next;</span>
+        }
+<span class="fc" id="L153">        return false;</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L158">        StringBuilder res = new StringBuilder();</span>
+<span class="nc" id="L159">        res.append(&quot;{&quot;);</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">        for (var i : this) {</span>
+<span class="nc" id="L161">            res.append(&quot; &quot;).append(i).append(&quot;,&quot;);</span>
+<span class="nc" id="L162">        }</span>
+<span class="nc" id="L163">        res.replace(res.length() - 1, res.length(), &quot; }&quot;);</span>
+<span class="nc" id="L164">        return res.toString();</span>
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+<span class="pc bpc" id="L169" title="1 of 2 branches missed.">        if (this == obj) {</span>
+<span class="nc" id="L170">            return true;</span>
+        }
+<span class="pc bpc" id="L172" title="2 of 4 branches missed.">        if (obj == null || obj.getClass() != this.getClass()) {</span>
+<span class="nc" id="L173">            return false;</span>
+        }
+<span class="fc" id="L175">        HashTable transformedObj = (HashTable) obj;</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">        if (size != transformedObj.size) {</span>
+<span class="fc" id="L177">            return false;</span>
+        }
+<span class="fc bfc" id="L179" title="All 2 branches covered.">        for (var i : this) {</span>
+<span class="pc bpc" id="L180" title="1 of 2 branches missed.">            if (!transformedObj.containsKey(i.key)) {</span>
+<span class="nc" id="L181">                return false;</span>
+            }
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            if (!Objects.equals(transformedObj.get(i.key), i.value)) {</span>
+<span class="nc" id="L184">                return false;</span>
+            }
+<span class="fc" id="L186">        }</span>
+<span class="fc" id="L187">        return true;</span>
+    }
+
+    @SuppressWarnings(&quot;unchecked&quot;)
+    private void resize() {
+<span class="fc" id="L192">        Node&lt;K, V&gt;[] newTable = (Node&lt;K, V&gt;[]) new Node[table.length * 2 + 1];</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">        for (var i : this) {</span>
+<span class="fc" id="L194">            int index = (i.hash &amp; 0x7FFFFFFF) % newTable.length;</span>
+<span class="fc" id="L195">            i.next = newTable[index];</span>
+<span class="fc" id="L196">            newTable[index] = i;</span>
+<span class="fc" id="L197">        }</span>
+<span class="fc" id="L198">        table = newTable;</span>
+<span class="fc" id="L199">    }</span>
+
+    @Override
+    public Iterator&lt;Node&lt;K, V&gt;&gt; iterator() {
+<span class="fc" id="L203">        return new HashTableIterator();</span>
+    }
+
+    private class HashTableIterator implements Iterator&lt;Node&lt;K, V&gt;&gt; {
+<span class="fc" id="L207">        int currentIndex = 0;</span>
+<span class="fc" id="L208">        private Node&lt;K, V&gt; currentNode = table[currentIndex];</span>
+
+<span class="fc" id="L210">        HashTableIterator() {</span>
+<span class="fc bfc" id="L211" title="All 2 branches covered.">            if (table[0] == null) {</span>
+<span class="fc" id="L212">                search();</span>
+            }
+<span class="fc" id="L214">        }</span>
+
+        @Override
+        public boolean hasNext() {
+<span class="fc bfc" id="L218" title="All 2 branches covered.">            return currentNode != null;</span>
+        }
+
+        @Override
+        public Node&lt;K, V&gt; next() {
+<span class="fc" id="L223">            Node&lt;K, V&gt; tmp = currentNode;</span>
+<span class="fc" id="L224">            search();</span>
+<span class="fc" id="L225">            return tmp;</span>
+        }
+
+        private void search() {
+<span class="fc bfc" id="L229" title="All 4 branches covered.">            if (currentNode != null &amp;&amp; currentNode.next != null) {</span>
+<span class="fc" id="L230">                currentNode = currentNode.next;</span>
+<span class="fc" id="L231">                return;</span>
+            }
+<span class="fc" id="L233">            currentIndex++;</span>
+<span class="fc bfc" id="L234" title="All 4 branches covered.">            while (currentIndex &lt; table.length &amp;&amp; table[currentIndex] == null) {</span>
+<span class="fc" id="L235">                currentIndex++;</span>
+            }
+<span class="fc bfc" id="L237" title="All 2 branches covered.">            if (currentIndex &gt;= table.length) {</span>
+<span class="fc" id="L238">                currentNode = null;</span>
+<span class="fc" id="L239">                return;</span>
+            }
+<span class="fc" id="L241">            currentNode = table[currentIndex];</span>
+<span class="fc" id="L242">        }</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.15.202606040825</span></div></body></html>
