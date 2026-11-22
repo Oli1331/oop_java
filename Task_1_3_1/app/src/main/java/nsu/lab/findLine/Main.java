@@ -13,6 +13,6 @@ public class Main {
      */
     static public void main(String[] args){
         SearchSubstring tool = new SearchSubstring();
-        System.out.println(tool.find("build/resources/main/text.txt","asdfasdf"));
+        System.out.println(tool.find("build/resources/main/text.txt","бра"));
     }
 }
