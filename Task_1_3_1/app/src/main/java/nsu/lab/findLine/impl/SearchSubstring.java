@@ -9,8 +9,24 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class providing functionality for substring searching in files or streams.
+ */
 public class SearchSubstring {
 
+    /**
+     * Default constructor.
+     */
+    public SearchSubstring() {
+    }
+
+    /**
+     * Finds all start indices of a substring in a file.
+     *
+     * @param pathToFile path to the target file
+     * @param substring substring to search for
+     * @return list of 0-based character indices where substring occurs
+     */
     public List<Long> find(String pathToFile, String substring) {
         try (BufferedReader reader = Files.newBufferedReader(Path.of(pathToFile), StandardCharsets.UTF_8)) {
             return find(reader, substring);
@@ -19,6 +35,14 @@ public class SearchSubstring {
         }
     }
 
+    /**
+     * Finds all start indices of a substring in a Reader stream.
+     *
+     * @param reader input stream reader
+     * @param substring substring to search for
+     * @return list of 0-based character indices where substring occurs
+     * @throws IOException if an I/O error occurs
+     */
     public List<Long> find(Reader reader, String substring) throws IOException {
         List<Long> result = new ArrayList<>();
         if (substring == null || substring.isEmpty()) {
@@ -47,7 +71,9 @@ public class SearchSubstring {
                     result.add(currentSymbolIndex - patternSymbolLength + 1);
                     matched = pi[matched - 1];
                 }
-                currentSymbolIndex++;
+                if (!Character.isHighSurrogate(ch)) {
+                    currentSymbolIndex++;
+                }
             }
         }
 
@@ -66,6 +92,7 @@ public class SearchSubstring {
             }
             pi[i] = j;
         }
+        //System.out.println("pi for - "+substring + Arrays.toString(pi));
         return pi;
     }
 }
