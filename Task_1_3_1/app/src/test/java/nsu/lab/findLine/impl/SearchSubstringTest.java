@@ -50,18 +50,24 @@ class SearchSubstringTest {
     }
 
     @Test
+    void EmojiTest2() throws IOException {
+        List<Long> result = finder.find(new StringReader("🥝🍊🍉"), "🍊");
+        assertEquals(List.of(1L), result);
+    }
+
+    @Test
     void largeGeneratedFileTest(@TempDir Path tempDir) throws IOException {
         Path bigFile = tempDir.resolve("big.txt");
 
         String chunk = "a".repeat(100);
         try (BufferedWriter writer = Files.newBufferedWriter(bigFile, StandardCharsets.UTF_8)) {
-            for (int i = 0; i < 100_000; i++) {
+            for (int i = 0; i < 10_000_000; i++) {
                 writer.write(chunk);
             }
             writer.write("секрет");
         }
 
         List<Long> result = finder.find(bigFile.toString(), "секрет");
-        assertEquals(List.of(10_000_000L), result);
+        assertEquals(List.of(1_000_000_000L), result);
     }
 }
