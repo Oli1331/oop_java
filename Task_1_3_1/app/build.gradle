@@ -13,6 +13,8 @@ test {
     useJUnitPlatform()
     // Автоматически запускать генерацию отчета после выполнения тестов
     finalizedBy jacocoTestReport
+
+
 }
 
 javadoc {

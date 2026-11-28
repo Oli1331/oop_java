@@ -64,10 +64,10 @@ class SearchSubstringTest {
             for (int i = 0; i < 10_000_000; i++) {
                 writer.write(chunk);
             }
-            writer.write("секрет");
+            writer.write("секрет!");
         }
 
-        List<Long> result = finder.find(bigFile.toString(), "секрет");
+        List<Long> result = finder.find(bigFile.toString(), "секрет!");
         assertEquals(List.of(1_000_000_000L), result);
     }
 }
